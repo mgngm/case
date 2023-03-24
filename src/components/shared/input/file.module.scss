@@ -1,0 +1,74 @@
+@use './index.module' as inputStyles;
+@use 'styles/theme';
+@use 'styles/util';
+
+.container {
+  @include inputStyles.container-styles();
+  color: theme.color('text', 'card');
+  background-color: theme.color('background', 'form');
+  border-style: dashed;
+  min-height: 128px;
+  min-width: 256px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 32px;
+
+  &.slimContainer {
+    min-height: 100px;
+    height: 100px;
+    flex-direction: row;
+    padding: 10px;
+    margin: 0.5rem 0;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: nowrap;
+
+    .icon {
+      font-size: 30px;
+    }
+
+    .title {
+      flex: 1 0 auto;
+      text-align: left;
+      font-size: 16px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+    }
+  }
+
+  &.dragged {
+    border-color: theme.color(background, teal);
+  }
+  &.hasFile {
+    border-color: theme.color(border, dark);
+  }
+  .input {
+    display: none;
+  }
+  .icon {
+    font-size: 44px;
+    color: rgba(theme.color('text', 'card'), 0.3);
+    pointer-events: none;
+  }
+  .title {
+    @include theme.text('h5', 'bold');
+    pointer-events: none;
+    text-align: center;
+    &.filename {
+      max-width: min(256px, 100%);
+      @include util.overflow-ellipsis();
+    }
+  }
+  .subtitle {
+    @include theme.text('h6');
+    color: rgba(theme.color('text', 'card'), 0.5);
+    pointer-events: none;
+    text-align: center;
+  }
+}

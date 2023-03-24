@@ -1,0 +1,77 @@
+@use 'styles/theme';
+
+$divider: rgba(54, 54, 54, 0.1);
+
+.formBlock {
+  margin-top: 15px;
+  border: 1px solid $divider;
+  border-radius: 6px;
+  overflow: hidden;
+  .subtitle {
+    @include theme.text('h5', 'bold');
+    margin: 0;
+    padding: 15px 20px;
+    .subtitleHighlight {
+      opacity: 0.3;
+    }
+  }
+  .warning {
+    color: theme.color('text', 'error');
+    margin: 0;
+    margin-top: 8px;
+  }
+  .emptyRow {
+    border-top: 1px solid $divider;
+    background-color: rgba(54, 54, 54, 0.06);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include theme.text('h6');
+    color: rgba(theme.color(text, grey, dark), 0.6);
+  }
+  .actions {
+    border-top: 1px solid $divider;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  &Row {
+    & + &,
+    .subtitle + & {
+      border-top: 1px solid $divider;
+    }
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    .cell {
+      padding: 15px;
+      &:first-child {
+        @include theme.text('h6', 'bold');
+        background-color: rgba(54, 54, 54, 0.06);
+      }
+    }
+    &.metric {
+      grid-template-columns: 190px 1fr 44px;
+    }
+    &.chart {
+      grid-template-columns: 1fr 44px;
+      .cellGroup {
+        display: grid;
+        grid-template-columns: 190px 1fr;
+        &:not(:first-child) {
+          border-top: 1px solid $divider;
+        }
+      }
+    }
+    &.metric,
+    &.chart {
+      .deleteCell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-left: 1px solid $divider;
+        grid-row-start: span 3;
+      }
+    }
+  }
+}

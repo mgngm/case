@@ -1,0 +1,27 @@
+@use 'styles/theme';
+
+.loader {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.contextTitle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid theme.color(border, dark);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.loadingContainer {
+  text-align: left;
+  display: inline-flex;
+}

@@ -1,0 +1,206 @@
+@use 'sass:color';
+@use 'styles/theme';
+
+.sticky {
+  &__headerRight {
+    background: linear-gradient(180deg, #53387e 0%, #1a094b 100%);
+    z-index: 1;
+    border-right: 1px solid #6c4d97;
+
+    &::after {
+      content: '';
+      background: #6c4d97;
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      right: -2px;
+      top: 0;
+      box-shadow: 2px 0px 5px 0px rgb(0 0 0 / 30%);
+    }
+  }
+
+  &__headerLeft {
+    background: linear-gradient(180deg, #53387e 0%, #1a094b 100%);
+    z-index: 1;
+    border-left: 1px solid #6c4d97;
+
+    &::after {
+      content: '';
+      background: #6c4d97;
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      left: -2px;
+      top: 0;
+      box-shadow: -2px 0px 5px 0px rgb(0 0 0 / 30%);
+    }
+  }
+
+  &__rowRight {
+    border-right: 1px solid #e6e1ed;
+    background-color: white;
+
+    &::after {
+      content: '';
+      background: #e6e1ed;
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      right: -2px;
+      top: 0;
+      box-shadow: 2px 0px 5px 0px rgb(0 0 0 / 30%);
+    }
+  }
+
+  &__rowLeft {
+    border-left: 1px solid #e6e1ed;
+    background-color: white;
+
+    &::after {
+      content: '';
+      background: #e6e1ed;
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      left: -2px;
+      top: 0;
+      box-shadow: -2px 0px 5px 0px rgb(0 0 0 / 30%);
+    }
+  }
+}
+
+.shadow {
+  box-shadow: inset 6px 0px 20px 0 rgb(0 0 0 / 10%);
+}
+
+@mixin stickyColor($color) {
+  .sticky__rowRight,
+  .sticky__rowLeft {
+    // can't use alpha channel here!
+    background-color: $color;
+  }
+}
+
+.tableContainer tbody {
+  :global(.MuiTableRow-root) {
+    &:nth-of-type(even) {
+      @include stickyColor(color.mix(white, black, 96%));
+    }
+
+    &:hover {
+      @include stickyColor(color.mix(white, black, 96%));
+      &:nth-of-type(even) {
+        @include stickyColor(color.mix(white, black, 92%));
+      }
+    }
+
+    &:global(.Mui-selected) {
+      @include stickyColor(color.mix(white, theme.color(button, light), 92%));
+      &:hover {
+        @include stickyColor(color.mix(white, theme.color(button, light), 88%));
+      }
+    }
+  }
+}
+
+.nameColumn {
+  min-width: 300px;
+  @include theme.breakpoint('md', 'below') {
+    min-width: 230px;
+  }
+  &.headerRow {
+    padding-left: 16px + 34px;
+  }
+}
+
+.dateColumn {
+  min-width: 150px;
+}
+
+.improvementColumn {
+  min-width: 160px;
+}
+
+.employeesColumn {
+  min-width: 100px;
+}
+
+.timeLostColumn {
+  min-width: 150px;
+}
+.hxColumn {
+  min-width: 120px;
+}
+
+.payrollColumn {
+  min-width: 150px;
+}
+
+.statusColumn {
+  min-width: 150px;
+}
+
+.statusDot {
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 10px;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  &.completed,
+  &.archived {
+    background-color: theme.color(gradients, bands, satisfied, dark);
+  }
+  &.onHold {
+    background-color: theme.color(background, orange);
+  }
+  &.inProgress {
+    background-color: theme.color(gradients, bands, frustrated, dark);
+  }
+  &.notStarted {
+    background-color: theme.color(gradients, bands, suffering, dark);
+  }
+}
+
+.detailsCell {
+  border-bottom: 0 none !important;
+}
+
+.improvementNameCell {
+  display: flex;
+  align-items: center;
+}
+
+.tableContainer {
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid #d8d8d8 !important;
+  margin-bottom: 50px;
+
+  &[class^='lock-scroll-'],
+  &[class*='lock-scroll-'] {
+    overflow: hidden;
+  }
+}
+
+.tableLoading {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pagination {
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  background: theme.color(lightTheme, background, main);
+  right: 0;
+  left: 70px;
+  z-index: 1;
+  border-top: 2px solid theme.color('lightTheme', 'input', 'border');
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1rem;
+}

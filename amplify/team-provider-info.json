@@ -1,0 +1,75 @@
+{
+  "develop": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-tesseract-develop-80750-authRole",
+      "UnauthRoleArn": "arn:aws:iam::507548201851:role/amplify-tesseract-develop-80750-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::507548201851:role/amplify-tesseract-develop-80750-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-tesseract-develop-80750-deployment",
+      "UnauthRoleName": "amplify-tesseract-develop-80750-unauthRole",
+      "StackName": "amplify-tesseract-develop-80750",
+      "StackId": "arn:aws:cloudformation:eu-west-1:507548201851:stack/amplify-tesseract-develop-80750/47a30e90-358e-11ed-9729-06d78840e543",
+      "AmplifyAppId": "d1m9105kyx4cvx",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-tesseract-develop-80750-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "auth": {
+        "tesseract32b8060e": {},
+        "userPoolGroups": {}
+      },
+      "storage": {
+        "tesseractdevelop": {}
+      },
+      "api": {
+        "tesseract": {},
+        "filterParseApi": {}
+      },
+      "custom": {
+        "customResource5376c971": {}
+      },
+      "function": {
+        "tesseractHelloWorld": {
+          "deploymentBucketName": "amplify-tesseract-develop-80750-deployment",
+          "s3Key": "amplify-builds/tesseractHelloWorld-31416b2b53387358726a-build.zip"
+        },
+        "parseLambda": {
+          "deploymentBucketName": "amplify-tesseract-develop-80750-deployment",
+          "s3Key": "amplify-builds/parseLambda-34763154525449575867-build.zip"
+        },
+        "duLambda": {
+          "deploymentBucketName": "amplify-tesseract-develop-80750-deployment",
+          "s3Key": "amplify-builds/duLambda-33713155416535696e32-build.zip"
+        },
+        "publishLambda": {
+          "deploymentBucketName": "amplify-tesseract-develop-80750-deployment",
+          "s3Key": "amplify-builds/publishLambda-5a78366b655254513361-build.zip"
+        },
+        "deleteReportLambda": {
+          "deploymentBucketName": "amplify-tesseract-develop-80750-deployment",
+          "s3Key": "amplify-builds/deleteReportLambda-32673944636d52336263-build.zip"
+        },
+        "dynamoDelete": {
+          "deploymentBucketName": "amplify-tesseract-develop-80750-deployment",
+          "s3Key": "amplify-builds/dynamoDelete-56554663576c5237546c-build.zip"
+        },
+        "filterParseLambda": {
+          "deploymentBucketName": "amplify-tesseract-develop-80750-deployment",
+          "s3Key": "amplify-builds/filterParseLambda-426d6957467079485a32-build.zip"
+        }
+      }
+    }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-casereplication-dev-144630-authRole",
+      "UnauthRoleArn": "arn:aws:iam::827603881742:role/amplify-casereplication-dev-144630-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::827603881742:role/amplify-casereplication-dev-144630-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-casereplication-dev-144630-deployment",
+      "UnauthRoleName": "amplify-casereplication-dev-144630-unauthRole",
+      "StackName": "amplify-casereplication-dev-144630",
+      "StackId": "arn:aws:cloudformation:us-east-1:827603881742:stack/amplify-casereplication-dev-144630/e95721c1-ca41-11ed-b2d2-0e239e727623",
+      "AmplifyAppId": "d18jg3i11v1lr2"
+    }
+  }
+}

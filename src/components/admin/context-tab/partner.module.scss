@@ -1,0 +1,51 @@
+@use 'styles/theme';
+
+.partnerWrapper {
+  margin: 1rem 0;
+  padding: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed theme.color(border, dark);
+}
+
+.partnerTitle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .partnerName {
+    font-weight: 400;
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+
+    span {
+      font-weight: normal;
+      font-size: 1rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .deletePartnerButton {
+    margin-left: auto;
+    flex: 0 0 auto;
+
+    &[disabled] {
+      color: rgba(255, 255, 255, 0.3) !important;
+    }
+  }
+
+  .editPartnerButtonWrapper {
+    width: 100%;
+    flex: 1 0 auto;
+  }
+}
+
+.orgTableWrapper {
+  padding-top: 20px;
+}
+
+.createOrgButtonWrapper {
+  display: flex;
+  width: 100%;
+  margin-top: 1rem;
+}

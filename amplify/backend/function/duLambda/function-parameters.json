@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "storage": {
+      "Report:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "DU:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "Parse:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

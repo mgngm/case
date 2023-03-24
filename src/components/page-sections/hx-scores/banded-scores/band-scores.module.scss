@@ -1,0 +1,14 @@
+@use 'styles/theme';
+
+.bandedScores {
+  display: flex;
+  justify-content: center;
+  @include theme.breakpoint('md') {
+    gap: 21px;
+  }
+  gap: 3px;
+
+  &.employeesPage {
+    gap: 10px;
+  }
+}

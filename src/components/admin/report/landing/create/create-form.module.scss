@@ -1,0 +1,24 @@
+.fileInputWrapper {
+  display: flex;
+  flex-direction: column;
+
+  .fileInputs {
+    display: flex;
+    gap: 1rem;
+    max-width: 100%;
+  }
+
+  .fileInputSingle {
+    flex: 1 1 50%;
+    min-width: 0;
+  }
+}
+
+.submit {
+  display: flex;
+  justify-content: flex-end;
+
+  button:last-of-type {
+    margin-left: 1rem;
+  }
+}

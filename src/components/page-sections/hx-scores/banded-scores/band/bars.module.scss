@@ -1,0 +1,139 @@
+@use 'styles/theme';
+
+.barWrapper {
+  @include theme.breakpoint('md') {
+    --colWidth: 50px;
+    --gap: 51px;
+    --barWidth: 20px;
+    --barHeight: 128px;
+    --bandValueSize: 31px;
+  }
+
+  --colWidth: 35px;
+  --gap: 15px;
+  --barWidth: 20px;
+  --barHeight: 78px;
+  --bandValueSize: 23px;
+
+  &.employeesPage {
+    @include theme.breakpoint('md') {
+      --colWidth: 45px;
+      --gap: 46px;
+      --barWidth: 15px;
+      --barHeight: 123px;
+      --bandValueSize: 26px;
+    }
+
+    --colWidth: 30px;
+    --gap: 10px;
+    --barWidth: 15px;
+    --barHeight: 73px;
+    --bandValueSize: 18px;
+  }
+
+  .singleBandBars {
+    display: flex;
+    gap: calc(var(--gap) - (var(--colWidth) - var(--barWidth)));
+    height: var(--barHeight);
+
+    .singleScoreBar {
+      width: var(--colWidth);
+      display: flex;
+      justify-content: center;
+
+      svg {
+        overflow: hidden;
+        border-radius: calc(var(--barWidth) / 2);
+        height: var(--barHeight);
+      }
+    }
+  }
+
+  .singleBandCounts {
+    display: flex;
+    gap: calc(var(--gap) - (var(--colWidth) - var(--barWidth)));
+    @include theme.breakpoint('md') {
+      margin-top: 30px;
+    }
+    margin-top: 10px;
+
+    .singleScoreCount {
+      @include theme.breakpoint('md') {
+        @include theme.text('h5', 'bold', 'none');
+      }
+      @include theme.text('xs', 'bold', 'none');
+      width: var(--colWidth);
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &.employeesPage .singleBandCounts {
+    @include theme.breakpoint('md') {
+      margin-top: 20px;
+    }
+
+    margin-top: 5px;
+
+    .singleScoreCount {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+  .singleBandValues {
+    margin: 0 calc((var(--colWidth) - var(--bandValueSize)) / 2);
+    display: flex;
+    flex: 1;
+    border-radius: calc(var(--bandValueSize) / 2);
+    height: var(--bandValueSize);
+    gap: calc(var(--gap) - var(--bandValueSize) + 20px);
+
+    @include theme.breakpoint('md') {
+      margin-top: 15px;
+    }
+    margin-top: 10px;
+
+    .bandValue {
+      @include theme.breakpoint('md') {
+        @include theme.text('h4', 'black', 'none');
+      }
+      @include theme.text('xs', 'black', 'none');
+      width: var(--bandValueSize);
+      height: var(--bandValueSize);
+      border-radius: calc(var(--bandValueSize) / 2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 0px 1px 1px theme.color(shadow, bandValueText);
+    }
+  }
+
+  &.employeesPage .singleBandValues .bandValue {
+    @include theme.breakpoint('md') {
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+
+  @each $band, $color in theme.color(text, bands) {
+    .#{$band}Bg {
+      background-color: rgba($color, 20%);
+    }
+    .#{$band}BandValue {
+      background: linear-gradient(
+        0deg,
+        theme.color(gradients, bands, $band, dark) 0%,
+        theme.color(gradients, bands, $band, light) 100%
+      );
+    }
+  }
+
+  &.employeesPage {
+    @include theme.breakpoint('md') {
+      --gap: 25px;
+    }
+
+    --gap: 10px;
+  }
+}

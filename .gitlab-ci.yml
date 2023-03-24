@@ -1,0 +1,189 @@
+include:
+  - template: Security/SAST.gitlab-ci.yml
+
+default:
+  image: 878062504042.dkr.ecr.eu-west-1.amazonaws.com/web-ui/pipelines:latest
+
+stages:
+  - deps
+  - lint
+  - tests
+  - security
+  - analysis
+  - build
+  - deploy
+
+get-deps:
+  stage: deps
+  script:
+    - npm ci
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 hour
+
+.make-aws-exports:
+  &aws_exports # create a fake aws-exports file so we can check the build without any resources or nasty auth to pull them
+  - |
+    echo "const aws = { aws_project_region: \"eu-west-1\", aws_cognito_region: \"eu-west-1\", aws_user_files_s3_bucket: \"a_fake_bucket\", aws_user_files_s3_bucket_region: \"a_fake_region\", oauth: { domain: \"some_domain\" }, aws_user_pools_web_client_id: \"some_client_id\", aws_user_pools_id: \"some_pool_id\" }; export default aws;" > src/aws-exports.js
+  - cp src/aws-exports.js lambda/parse/aws-exports.js
+  - cp src/aws-exports.js lambda/du/aws-exports.js
+  - cp src/aws-exports.js lambda/publish/aws-exports.js
+  - cp src/aws-exports.js lambda/dynamoDelete/aws-exports.js
+  - cp src/aws-exports.js lambda/filterParse/aws-exports.js
+  - mkdir -p amplify/#current-cloud-backend/awscloudformation/build
+  - |
+    echo "{\"Resources\":{\"apitesseract\":{\"Properties\":{\"Parameters\":{\"env\":\"dev\"}}}}}" > amplify/#current-cloud-backend/awscloudformation/build/root-cloudformation-stack.json
+  - mkdir -p amplify/backend
+  - |
+    echo "{\"api\":{\"tesseract\":{\"output\":{\"GraphQLAPIIdOutput\":\"abc1234hellofakeid\"}}}}" > amplify/backend/amplify-meta.json
+
+lint:
+  stage: lint
+  dependencies:
+    - get-deps
+  script:
+    - *aws_exports
+    - npm run lint -- --format gitlab --dir src --dir pages
+  allow_failure: true
+  variables:
+    ESLINT_CODE_QUALITY_REPORT: gl-codequality.json
+  artifacts:
+    paths:
+      - console-output.ansi
+      - gl-codequality.json
+    reports:
+      codequality: gl-codequality.json
+    when: always
+    expire_in: 1 week
+
+type:
+  stage: lint
+  dependencies:
+    - get-deps
+  script:
+    - *aws_exports
+    - npm run type
+
+unit-tests:
+  stage: tests
+  dependencies:
+    - get-deps
+  before_script:
+    - *aws_exports
+    - npm install @swc/core-linux-x64-gnu @next/swc-linux-x64-musl
+  script:
+    - npm run test -- --coverage
+  allow_failure: false
+  artifacts:
+    paths:
+      - coverage
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+
+integration-tests:
+  stage: tests
+  when: manual
+  dependencies:
+    - get-deps
+  before_script:
+    - npx cypress install
+    - apt-get update --fix-missing
+    - apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libxss1 xvfb
+  script:
+    # - npm install @swc/core-linux-x64-gnu @next/swc-linux-x64-musl
+    - npm install mocha mochawesome mochawesome-merge mochawesome-report-generator
+    - 'npm run cypress:run -- --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
+    - npx mochawesome-merge cypress/report/mochawesome-report/mochawesome*.json > cypress/report/mochawesome.json
+  artifacts:
+    paths:
+      - cypress/report/mochawesome.json
+      - cypress/videos
+      - cypress/screenshots
+    when: always
+    expire_in: 1 day
+  allow_failure: true
+  variables:
+    CYPRESS_BASE_URL: $CYPRESS_BASE_URL
+
+sast:
+  stage: security
+  artifacts:
+    paths:
+      - gl-sast-report.json
+  variables:
+    SAST_EXCLUDED_PATHS: spec,test,tests,tmp,node_modules,.husky,.coverage,bin,utils,bdd,dev,build,cypress
+
+sonarqube:
+  stage: analysis
+  dependencies:
+    - unit-tests
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: ['']
+  cache:
+    key: '${CI_JOB_NAME}'
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner -Dsonar.qualitygate.wait=true -Dsonar.branch.name=$CI_COMMIT_REF_NAME
+  allow_failure: true
+  variables:
+    SONAR_USER_HOME: '${CI_PROJECT_DIR}/.sonar'
+    GIT_DEPTH: '0'
+
+build:
+  stage: build
+  dependencies:
+    - get-deps
+  script:
+    - *aws_exports
+    - npm install @swc/core-linux-x64-gnu @next/swc-linux-x64-musl
+    - npm run build
+
+deploy:
+  stage: deploy
+  only:
+    - main@web-ui/tesseract
+    # for research
+    - stable@web-ui/tesseract
+    - dev@web-ui/tesseract
+    # for tesseract-dev
+    - develop@web-ui/tesseract
+    # for tesseract-staging
+    - staging@web-ui/tesseract
+    - demo@web-ui/tesseract
+    # for tesseract-prod
+    - releases@web-ui/tesseract
+    # for maintenance page branches
+    - maintenance@web-ui/tesseract
+    - maintenance-staging@web-ui/tesseract
+    - maintenance-prod@web-ui/tesseract
+  secrets:
+    GITLAB_COM_UI_DEPLOY_KEY:
+      vault: web-team/public-gitlab/deploy-key/deploykey@secret
+      file: false
+  before_script:
+    - mkdir -p ~/.ssh
+    - echo "$GITLAB_COM_UI_DEPLOY_KEY" > ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
+    - eval $(ssh-agent -s)
+    - ssh-add ~/.ssh/id_ed25519
+    - touch ~/.ssh/known_hosts
+    - ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
+  script:
+    - git config user.email "$GITLAB_USER_EMAIL"
+    - git config user.name "$GITLAB_USER_LOGIN"
+    - git remote add gitlabcom git@gitlab.com:ui49/tesseract.git
+    - git fetch gitlabcom
+    - git pull gitlabcom $CI_COMMIT_REF_NAME
+    - git status
+    - git checkout -b amplify-deploy
+    - git commit --allow-empty -m "[${CI_COMMIT_REF_NAME}] amplify deploy"
+    - git push gitlabcom amplify-deploy:$CI_COMMIT_REF_NAME
+variables:
+  VAULT_SERVER_URL: $VAULT_ADDR
+  VAULT_AUTH_ROLE: gitlab_ci_dev_team
+  GIT_DEPTH: 0

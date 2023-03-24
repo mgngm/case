@@ -1,0 +1,122 @@
+@use 'sass:math';
+@use 'styles/theme';
+
+.worstSitesContainer {
+  flex-grow: 1;
+  @include theme.breakpoint('lg') {
+    background: white;
+    border: 1px solid theme.color('border', 'dark');
+    border-radius: 6px;
+    padding: 40px;
+  }
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.worstOfficesEmptyState {
+  color: black;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.worstSitesPill {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .dataType {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+
+    .pillTooltip {
+      height: 20px;
+      margin-left: 5px;
+    }
+  }
+}
+
+.barLabel {
+  stroke: black;
+  fill: black;
+  @include theme.text('xs', 'thin');
+  text-transform: capitalize;
+  text-anchor: start;
+}
+
+.barEmployeeCount {
+  @extend .barLabel;
+  stroke: theme.color('text', 'body-dark');
+  fill: theme.color('text', 'body-dark');
+}
+
+@function table-weight($weight, $total) {
+  @return #{math.div($weight, $total) * 100 + '%'};
+}
+
+.table {
+  border: 0.5px solid theme.color('divider', 'body'); // border-collapse doesn't work with border-radius so we have to do this
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  border-spacing: 0;
+  border-collapse: separate;
+  width: 100%;
+  &Row {
+    height: 55px;
+  }
+  &Cell {
+    padding: 10px;
+    border: 0.5px solid theme.color('divider', 'body'); // ditto
+    &.rank {
+      max-width: 50px;
+      @include theme.text('s');
+    }
+    &.office {
+      width: table-weight(5, 9);
+      @include theme.text('s', 'bold');
+      text-align: start;
+    }
+    &.hxScore {
+      @include theme.text('s', 'extralight');
+      min-width: 75px;
+      text-align: end;
+    }
+    &.employeeCount {
+      width: table-weight(2, 9);
+      @include theme.text('s', 'extralight');
+      text-align: end;
+    }
+  }
+}
+
+.legendSuffering {
+  fill: theme.color(text, bands, suffering);
+}
+
+.legendFrustrated {
+  fill: theme.color(text, bands, frustrated);
+}
+
+.legendSatisfied {
+  fill: theme.color(text, bands, satisfied);
+}
+
+.legendIcon {
+  background-color: black;
+  border-radius: 5px;
+}
+
+.legend {
+  @include theme.text('s', 'light');
+  fill: black;
+}
+
+.worstOfficesWrapper {
+  width: 100%;
+}

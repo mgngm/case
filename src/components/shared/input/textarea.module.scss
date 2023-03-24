@@ -1,0 +1,7 @@
+@use './index.module' as inputStyles;
+
+.textarea {
+  @include inputStyles.container-styles();
+  @include inputStyles.input-styles();
+  padding: 10px;
+}

@@ -1,0 +1,47 @@
+@use 'styles/theme';
+
+.search {
+  $baseColor: theme.color('border', 'main');
+
+  width: 40%;
+  max-width: 400px;
+  background-color: transparent;
+  color: white;
+  margin-right: 8px;
+  height: 44px;
+  border-color: rgba($baseColor, 0.6);
+
+  .input {
+    color: white;
+    height: 44px;
+    padding: 0;
+    padding-left: 1rem;
+  }
+
+  .clearIcon {
+    color: white;
+  }
+
+  .input::placeholder,
+  .endIcon {
+    color: rgba(white, 0.5);
+  }
+
+  &:hover {
+    border-color: rgba($baseColor, 0.8);
+  }
+
+  &:focus,
+  &:focus-within,
+  &:focus-visible {
+    border-color: $baseColor;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    .input::placeholder {
+      color: rgba(white, 0.5);
+    }
+  }
+}

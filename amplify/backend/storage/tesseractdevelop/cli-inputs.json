@@ -1,0 +1,10 @@
+{
+  "resourceName": "tesseractdevelop",
+  "policyUUID": "1ac40e45",
+  "bucketName": "tesseract1754e22f7d684346832b03c4b95cd4dd",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": ["CREATE_AND_UPDATE", "READ", "DELETE"],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

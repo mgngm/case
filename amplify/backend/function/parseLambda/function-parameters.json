@@ -1,0 +1,12 @@
+{
+  "lambdaLayers": [],
+  "permissions": {
+    "api": {
+      "tesseract": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    }
+  }
+}

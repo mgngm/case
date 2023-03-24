@@ -1,0 +1,389 @@
+@use 'styles/theme';
+
+.previewContent {
+  padding: 0 1.5rem;
+}
+.previewTitle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.previewWrapper {
+  display: flex;
+  position: relative;
+  &.horiz {
+    flex-direction: column;
+    .iframeWrapper {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+}
+
+.jsonWrapper {
+  flex: 1;
+  height: 70vh;
+  margin-right: 0.5rem;
+}
+
+.jsonInner {
+  height: calc(100% - 1.5rem);
+  overflow: auto;
+  margin-bottom: 1rem;
+}
+
+.jsonTextarea {
+  bottom: 0;
+}
+
+.jsonPre {
+  height: auto;
+}
+
+.jsonError {
+  background-color: theme.color(background, error);
+  padding: 0.5rem;
+}
+
+.errorTitle {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+
+  svg {
+    margin-right: 0.5rem;
+  }
+}
+
+.errorMessage {
+  margin-bottom: 0;
+  font-family: 'Fira code', 'Fira Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.applyWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.iframeWrapper {
+  flex: 1;
+  margin-left: 1rem;
+  position: relative;
+
+  &::after {
+    content: 'Loading Preview...';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+.iframe {
+  width: 100%;
+  height: 67.7vh;
+  border: 1px solid theme.color(border, dark);
+  position: relative;
+  z-index: 1;
+}
+
+.saveWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  z-index: 1;
+  gap: 1rem;
+}
+
+.accordion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  border: 1px solid theme.color(border, dark);
+  padding: 2rem 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.insightsContainer {
+  h3 {
+    margin-top: 0;
+  }
+  .insightsSelect {
+    min-width: 256px;
+    fieldset {
+      border-color: theme.color(border, dark);
+    }
+    &:hover {
+      fieldset {
+        border-color: theme.color(border, light);
+      }
+    }
+    :global(.MuiSelect-icon) {
+      color: rgba(white, 0.3);
+    }
+    .insightSelected {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      .insightChip {
+        color: white;
+        background-color: rgba(white, 0.1);
+      }
+    }
+  }
+}
+
+.insightItem:global(.MuiMenuItem-root) {
+  flex-direction: column;
+  align-items: flex-start;
+  .insightDate {
+    font-size: 0.5rem;
+    opacity: 0.5;
+  }
+}
+
+.accordionTitle {
+  margin-right: auto;
+}
+
+.accordionArrow {
+  &.accordionClosed {
+    transform: rotateX(180deg);
+  }
+}
+
+.accordionContent {
+  height: 58%;
+  transition: height 0.5s ease;
+  border: 1px solid theme.color(border, dark);
+
+  &.accordionFull {
+    height: 74%;
+  }
+
+  &.accordionClosed {
+    height: 0;
+    overflow: hidden;
+    border-top: 0 none;
+    border-bottom: 0 none;
+  }
+
+  & > div.jsonEditor {
+    height: calc(100% - 65px);
+    overflow: auto !important;
+  }
+}
+
+.reportConfigWrap {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  height: 60px;
+  max-height: 60px;
+}
+
+.settingsContent,
+.projectsContent {
+  overflow: auto;
+  background: theme.color(background, dark);
+
+  & > div {
+    padding: 1rem;
+  }
+}
+
+.settingsWarning {
+  margin-bottom: 1rem;
+}
+
+.projectsInner {
+  h3 {
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    .createProjectBtn,
+    .updateProjectBtn {
+      margin-left: auto;
+      cursor: pointer;
+
+      svg {
+        fill: white;
+      }
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+
+    td,
+    th {
+      text-align: left;
+      padding-left: 0.5rem;
+    }
+
+    th:last-child,
+    td:last-child {
+      text-align: right;
+    }
+
+    tr:nth-of-type(even) {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .reorderProjectWrap {
+      display: flex;
+      flex-direction: column;
+
+      .reorderProjectBtn {
+        height: 1rem;
+        svg {
+          fill: white;
+        }
+
+        &[disabled] svg {
+          fill: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+
+    .editProjectBtn {
+      svg {
+        fill: white;
+      }
+    }
+
+    .deleteProjectBtn {
+      svg {
+        fill: darkred;
+      }
+    }
+  }
+}
+
+.parseInfo {
+  margin: 0 1rem;
+  display: flex;
+  align-items: center;
+
+  .parseLoading {
+    display: flex;
+  }
+
+  .parseState {
+    margin: 0 1rem;
+    display: flex;
+    flex-direction: column;
+
+    .parseFailureWrap {
+      display: flex;
+      align-items: center;
+
+      button {
+        padding: 0 0.5rem;
+      }
+    }
+  }
+}
+
+.parseWarning {
+  background: #ebebeb;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  overflow: auto;
+  max-height: 150px;
+
+  pre {
+    white-space: pre-wrap;
+    margin: 0;
+  }
+}
+
+.infoWrapper {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+
+  .nameWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    label {
+      margin-right: 1rem;
+      min-width: 50px;
+    }
+
+    input {
+      width: 215px;
+    }
+  }
+
+  .dateWarning {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .dateInnerInput > div {
+    height: 2.25rem;
+    width: 217px;
+    background: white !important;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .infoWrapper {
+    // background-color: red;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .nameWrapper {
+      margin-bottom: 0.5rem;
+    }
+
+    .dateInput {
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: 'Date: ';
+        display: block;
+        width: 92px;
+      }
+    }
+  }
+
+  .accordionContent {
+    height: 51.7%;
+  }
+}

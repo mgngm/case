@@ -1,0 +1,19 @@
+.officePicklistWrap {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+    border-bottom: 0 none;
+    padding-bottom: 0;
+  }
+}
+
+.picklistList {
+  li {
+    &:nth-of-type(odd) {
+      background: rgb(240, 240, 240);
+    }
+  }
+}

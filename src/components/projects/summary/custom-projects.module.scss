@@ -1,0 +1,58 @@
+@use 'styles/theme';
+
+.customProject {
+  display: flex;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 20px !important;
+  padding: 30px !important;
+  width: 100% !important;
+
+  background-color: theme.color(lightTheme, background, main) !important;
+  margin-bottom: 1rem !important;
+  border: 1px solid theme.color(lightTheme, input, border) !important;
+  border-radius: 6px !important;
+  color: theme.color(lightTheme, text, body) !important;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04) !important;
+  }
+
+  &.selected {
+    border-color: theme.color(lightTheme, button, iconPurple) !important;
+    box-shadow: 0px 0px 20px rgba(57, 3, 127, 0.2);
+  }
+
+  .eyeIcon,
+  .customProjectIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      fill: #4e3b86;
+    }
+  }
+
+  .customProjectIcon {
+    padding-left: 20px;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 1px;
+      background: theme.color(lightTheme, input, border);
+    }
+  }
+
+  .customProjectsContent {
+    padding: 0 !important;
+  }
+}

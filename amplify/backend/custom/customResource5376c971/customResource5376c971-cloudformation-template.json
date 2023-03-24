@@ -1,0 +1,233 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "env": {
+      "Type": "String"
+    },
+    "authtesseract32b8060eIdentityPoolId": {
+      "Type": "String",
+      "Description": "Input parameter describing IdentityPoolId attribute for auth/tesseract32b8060e resource"
+    },
+    "authtesseract32b8060eIdentityPoolName": {
+      "Type": "String",
+      "Description": "Input parameter describing IdentityPoolName attribute for auth/tesseract32b8060e resource"
+    },
+    "authtesseract32b8060eHostedUIDomain": {
+      "Type": "String",
+      "Description": "Input parameter describing HostedUIDomain attribute for auth/tesseract32b8060e resource"
+    },
+    "authtesseract32b8060eOAuthMetadata": {
+      "Type": "String",
+      "Description": "Input parameter describing OAuthMetadata attribute for auth/tesseract32b8060e resource"
+    },
+    "authtesseract32b8060eUserPoolId": {
+      "Type": "String",
+      "Description": "Input parameter describing UserPoolId attribute for auth/tesseract32b8060e resource"
+    },
+    "authtesseract32b8060eUserPoolArn": {
+      "Type": "String",
+      "Description": "Input parameter describing UserPoolArn attribute for auth/tesseract32b8060e resource"
+    },
+    "authtesseract32b8060eUserPoolName": {
+      "Type": "String",
+      "Description": "Input parameter describing UserPoolName attribute for auth/tesseract32b8060e resource"
+    },
+    "authtesseract32b8060eAppClientIDWeb": {
+      "Type": "String",
+      "Description": "Input parameter describing AppClientIDWeb attribute for auth/tesseract32b8060e resource"
+    },
+    "authtesseract32b8060eAppClientID": {
+      "Type": "String",
+      "Description": "Input parameter describing AppClientID attribute for auth/tesseract32b8060e resource"
+    },
+    "storagetesseractdevelopBucketName": {
+      "Type": "String",
+      "Description": "Input parameter describing BucketName attribute for storage/tesseractdevelop resource"
+    },
+    "storagetesseractdevelopRegion": {
+      "Type": "String",
+      "Description": "Input parameter describing Region attribute for storage/tesseractdevelop resource"
+    },
+    "apitesseractGraphQLAPIKeyOutput": {
+      "Type": "String",
+      "Description": "Input parameter describing GraphQLAPIKeyOutput attribute for api/tesseract resource"
+    },
+    "apitesseractGraphQLAPIIdOutput": {
+      "Type": "String",
+      "Description": "Input parameter describing GraphQLAPIIdOutput attribute for api/tesseract resource"
+    },
+    "apitesseractGraphQLAPIEndpointOutput": {
+      "Type": "String",
+      "Description": "Input parameter describing GraphQLAPIEndpointOutput attribute for api/tesseract resource"
+    }
+  },
+  "Resources": {
+    "tesseractDynamoAuth": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "tesseractDynamoAuth",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": ["dynamodb:BatchWriteItem", "dynamodb:Query", "dynamodb:UpdateItem", "dynamodb:Scan"],
+              "Resource": [
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/PersonaSettings-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/PersonaSettings-3fch3oorjnhtvbl3icflxqfmwi-develop/index/byOrganisation",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/InputAssumption-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/InputAssumption-3fch3oorjnhtvbl3icflxqfmwi-develop/index/gsi-PersonaSettings.inputAssumptions",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/ApplicationUsage-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/ApplicationUsage-3fch3oorjnhtvbl3icflxqfmwi-develop/index/gsi-InputAssumption.applicationUsages",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/Partner-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/Partner-3fch3oorjnhtvbl3icflxqfmwi-develop/index/byPartnerId",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/Organisation-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/Organisation-3fch3oorjnhtvbl3icflxqfmwi-develop/index/byOrganisationId",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/Organisation-3fch3oorjnhtvbl3icflxqfmwi-develop/index/gsi-Partner.organisations",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/ContextMap-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/ContextMap-3fch3oorjnhtvbl3icflxqfmwi-develop/index/byIdentityProvider",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/Report-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/Report-3fch3oorjnhtvbl3icflxqfmwi-develop/index/*",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/Project-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/Project-3fch3oorjnhtvbl3icflxqfmwi-develop/index/*",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/ProjectTemplate-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/ProjectTemplate-3fch3oorjnhtvbl3icflxqfmwi-develop/index/*",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/ProjectInsight-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/ProjectInsight-3fch3oorjnhtvbl3icflxqfmwi-develop/index/*",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/DU-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/DU-3fch3oorjnhtvbl3icflxqfmwi-develop/index/*",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/Parse-3fch3oorjnhtvbl3icflxqfmwi-develop",
+                "arn:aws:dynamodb:eu-west-1:507548201851:table/Parse-3fch3oorjnhtvbl3icflxqfmwi-develop/index/*"
+              ]
+            }
+          ]
+        },
+        "Roles": ["amplify-tesseract-develop-80750-authRole"]
+      }
+    },
+    "tesseractCognitoAuth": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "tesseractCognitoAuth",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "CognitoIdentity",
+              "Effect": "Allow",
+              "Action": ["cognito-identity:ListIdentities"],
+              "Resource": [
+                "arn:aws:cognito-identity:eu-west-1:507548201851:identitypool/eu-west-1:9bbbcc97-2d17-4089-9f99-7518bd178c68"
+              ]
+            },
+            {
+              "Sid": "CognitoIdp",
+              "Effect": "Allow",
+              "Action": [
+                "cognito-idp:ListIdentityProviders",
+                "cognito-idp:DescribeIdentityProvider",
+                "cognito-idp:ListUsers",
+                "cognito-idp:AdminCreateUser",
+                "cognito-idp:AdminDeleteUser",
+                "cognito-idp:CreateGroup",
+                "cognito-idp:DeleteGroup",
+                "cognito-idp:GetGroup",
+                "cognito-idp:ListGroups",
+                "cognito-idp:ListUsersInGroup",
+                "cognito-idp:UpdateGroup",
+                "cognito-idp:AdminAddUserToGroup",
+                "cognito-idp:AdminListGroupsForUser",
+                "cognito-idp:AdminRemoveUserFromGroup",
+                "cognito-idp:AdminResetUserPassword",
+                "cognito-idp:AdminUpdateUserAttributes"
+              ],
+              "Resource": ["arn:aws:cognito-idp:eu-west-1:507548201851:userpool/eu-west-1_bkCfPDviC"]
+            }
+          ]
+        },
+        "Roles": ["amplify-tesseract-develop-80750-authRole"]
+      }
+    },
+    "tesseractCognitoUnauth": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "tesseractCognitoUnauth",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "CognitoIdp",
+              "Effect": "Allow",
+              "Action": ["cognito-idp:ListIdentityProviders", "cognito-idp:DescribeIdentityProvider"],
+              "Resource": ["arn:aws:cognito-idp:eu-west-1:507548201851:userpool/eu-west-1_bkCfPDviC"]
+            }
+          ]
+        },
+        "Roles": ["amplify-tesseract-develop-80750-unauthRole"]
+      }
+    },
+    "tesseractS3Auth": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "tesseractS3Auth",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "ListObjects",
+              "Effect": "Allow",
+              "Action": "s3:ListBucket",
+              "Resource": ["arn:aws:s3:::tesseract1754e22f7d684346832b03c4b95cd4dd80750-develop"]
+            },
+            {
+              "Sid": "GetPutDeleteObjects",
+              "Effect": "Allow",
+              "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
+              "Resource": [
+                "arn:aws:s3:::tesseract1754e22f7d684346832b03c4b95cd4dd80750-develop",
+                "arn:aws:s3:::tesseract1754e22f7d684346832b03c4b95cd4dd80750-develop/*"
+              ]
+            }
+          ]
+        },
+        "Roles": ["amplify-tesseract-develop-80750-authRole"]
+      }
+    },
+    "tesseractApiAuth": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "tesseractApiAuth",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": ["appsync:GraphQL"],
+              "Resource": ["arn:aws:appsync:eu-west-1:507548201851:apis/3fch3oorjnhtvbl3icflxqfmwi/*"]
+            }
+          ]
+        },
+        "Roles": ["amplify-tesseract-develop-80750-authRole"]
+      }
+    },
+    "tesseractSQSAuth": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "tesseractSQSAuth",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": ["sqs:*"],
+              "Resource": ["arn:aws:sqs:eu-west-1:507548201851:*"]
+            }
+          ]
+        },
+        "Roles": ["amplify-tesseract-develop-80750-authRole"]
+      }
+    }
+  },
+  "Outputs": {},
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"10.0.0\",\"stackType\":\"custom-customCloudformation\",\"metadata\":{}}"
+}

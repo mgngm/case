@@ -1,0 +1,76 @@
+@use 'styles/theme';
+
+.bandWrapper {
+  display: flex;
+  flex-direction: column;
+
+  .bandInfo,
+  .bandTitle,
+  .bandDelta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bandDelta {
+    font-size: 0.8rem;
+  }
+
+  .bandTitle {
+    @include theme.breakpoint('md') {
+      @include theme.text('h2', 'black');
+      margin: 20px 0 15px;
+    }
+    @include theme.text('h6', 'black');
+    margin: 14px 0 7px;
+
+    span {
+      position: relative;
+
+      & > div {
+        position: absolute;
+        right: -23px;
+        top: 2px;
+      }
+    }
+  }
+
+  &.employeesPage {
+    .bandTitle {
+      @include theme.breakpoint('md') {
+        margin: 15px 0 10px;
+        font-weight: 700;
+      }
+      margin: 14px 0 7px;
+      font-size: 20px;
+    }
+  }
+
+  .bandInfo {
+    @include theme.breakpoint('md') {
+      @include theme.text('h3', 'light');
+      flex-direction: row;
+    }
+    @include theme.text('h6', 'light');
+    flex-direction: column;
+    gap: 5px 10px;
+
+    .percentage {
+      font-weight: theme.typography('font-weight', 'bold');
+    }
+  }
+
+  &.employeesPage {
+    .bandInfo {
+      @include theme.breakpoint('md') {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @each $band, $color in theme.color(text, bands) {
+    .#{$band}Title {
+      color: $color;
+    }
+  }
+}

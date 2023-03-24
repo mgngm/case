@@ -1,0 +1,39 @@
+@use 'styles/theme';
+
+.hybridMain {
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-left: auto;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .pageSections {
+    width: 100%;
+    @include theme.breakpoint('md') {
+      padding: 0 60px;
+      gap: 3em;
+      margin-bottom: 3rem;
+    }
+
+    .title {
+      @include theme.text('h6', 'black', $heading: true);
+      letter-spacing: 2px;
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+}

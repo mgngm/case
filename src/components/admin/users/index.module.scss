@@ -1,0 +1,199 @@
+@use 'styles/theme';
+
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 400px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 550px;
+  width: 100%;
+}
+
+.subtitle {
+  @include theme.text('h2', 'bold');
+  margin-bottom: 20px;
+}
+
+.dialogSubtitle {
+  @include theme.text('h5', 'semibold');
+  flex: 1;
+}
+
+.createUserForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 300px;
+
+  .createUserSuccess {
+    color: green;
+  }
+
+  .createUserError {
+    color: theme.color('text', 'error');
+  }
+
+  .createUserInput {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 100%;
+    margin: 20px 0;
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  width: 40%;
+  background-color: transparent;
+  color: white;
+  .input {
+    color: white;
+  }
+  .input::placeholder,
+  .endIcon,
+  .clearIcon {
+    color: rgba(white, 0.5);
+  }
+  &:hover,
+  &:focus,
+  &:focus-within {
+    .input::placeholder {
+      color: rgba(white, 0.75);
+    }
+  }
+}
+
+.refreshButton {
+  .loadingContainer {
+    text-align: left;
+    height: 24px;
+    width: 24px;
+    display: inline-flex;
+  }
+}
+
+.usersList {
+  height: 100%;
+  padding-top: 20px;
+}
+
+.preTable {
+  display: flex;
+  align-items: center;
+}
+
+.usersTable {
+  padding-bottom: 15px;
+}
+
+.deleteUserError {
+  color: theme.color('text', 'error');
+}
+
+.contextSegment {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.contextSegmentColumn {
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+
+.contextInput {
+  flex: 4;
+}
+
+.contextManagement {
+  padding: 0 16px;
+}
+
+.contextListHeader {
+  display: flex;
+  align-items: center;
+}
+
+.clearSelection {
+  color: theme.color('text', link);
+}
+
+.contextList {
+  margin-top: 10px;
+  max-height: 340px;
+  overflow: auto;
+
+  .contextItem {
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px theme.color('border', main) solid;
+    margin: 0.3rem;
+    padding: 0.8rem;
+    text-align: center;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .selected {
+    cursor: initial;
+    background-color: theme.color('background', teal);
+    opacity: 0.6;
+
+    &:hover {
+      background-color: theme.color('background', teal);
+    }
+  }
+
+  .newContext {
+    color: white;
+    background-color: theme.color('background', admin-list);
+
+    &:hover {
+      background-color: theme.color('background', admin-list);
+    }
+  }
+}
+
+.loadingSpinner {
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contextLabel {
+  margin-bottom: 0.5rem;
+}
+
+.defaultOrgDropdown {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.inputWrapper {
+  margin-top: 1rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.inputLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  @include theme.text('s');
+}

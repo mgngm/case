@@ -1,0 +1,30 @@
+@use 'styles/theme';
+
+.quickReportSwitch {
+  width: 250px;
+  background: #311764;
+  color: white !important;
+  outline: white;
+  border: 1px solid #4b387c;
+  border-radius: 5px;
+  cursor: pointer;
+
+  svg {
+    fill: white;
+  }
+
+  &.lightTheme {
+    background: white;
+    color: theme.color('lightTheme', 'text', 'body') !important;
+    border: 1px solid #d8d8d8;
+    outline: theme.color('lightTheme', 'text', 'body');
+
+    svg {
+      fill: #808080;
+    }
+  }
+}
+
+.previewPicker {
+  font-style: italic;
+}

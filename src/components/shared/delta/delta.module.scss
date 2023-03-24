@@ -1,0 +1,52 @@
+@use 'styles/theme';
+
+.delta {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  margin-right: 3px;
+}
+
+.deltaInfo {
+  display: flex;
+  align-items: center;
+
+  .deltaGreen {
+    @extend .delta;
+    &.deltaUp {
+      border-bottom: 5px solid theme.color(text, green);
+    }
+
+    &.deltaDown {
+      border-top: 5px solid theme.color(text, green);
+    }
+  }
+
+  .deltaRed {
+    @extend .delta;
+    &.deltaUp {
+      border-bottom: 5px solid theme.color(text, error);
+    }
+
+    &.deltaDown {
+      border-top: 5px solid theme.color(text, error);
+    }
+  }
+
+  .deltaGrey {
+    @extend .delta;
+    &.deltaUp {
+      border-bottom: 5px solid theme.color(text, grey, light);
+    }
+
+    &.deltaDown {
+      border-top: 5px solid theme.color(text, grey, light);
+    }
+  }
+
+  .deltaString {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}

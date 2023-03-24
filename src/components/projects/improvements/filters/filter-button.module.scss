@@ -1,0 +1,53 @@
+@use 'styles/theme';
+
+.projectTypeFilterButton {
+  flex: 1 1 auto;
+  padding: 10px 15px !important;
+}
+
+.buttonInner {
+  border-left: inherit;
+  margin: -10px 0;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 1rem;
+
+  .innerIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+
+    svg {
+      fill: theme.color(lightTheme, button, iconPurple);
+    }
+  }
+
+  .innerTextWrap {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    text-align: left;
+    line-height: 1.5;
+    .innerTextSubtitle {
+      color: theme.color(lightTheme, button, greyText);
+
+      .innerProjectCount {
+        font-weight: 700;
+        color: theme.color(lightTheme, button, color);
+      }
+    }
+    &.selected {
+      .innerTextSubtitle {
+        color: rgba(white, 0.7);
+
+        .innerProjectCount {
+          color: white;
+        }
+      }
+    }
+  }
+}

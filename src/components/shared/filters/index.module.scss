@@ -1,0 +1,37 @@
+@use 'styles/theme';
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px 0;
+}
+
+.subtitle {
+  @include theme.text('h6', 'bold');
+  margin: 0;
+}
+.chipRow {
+  @extend .chipContainer;
+  margin-bottom: 5px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  label {
+    min-width: 56px;
+  }
+}
+
+.chipContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}

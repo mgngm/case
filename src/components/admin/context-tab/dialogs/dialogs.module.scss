@@ -1,0 +1,42 @@
+@use 'styles/theme';
+
+.dialogSubtitle {
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.alert {
+  margin: 1rem 0;
+}
+
+.dialogInner {
+  border: 1px solid rgba(black, 20%);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.inputWrapper {
+  margin-top: 1rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.inputLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  @include theme.text('s');
+}
+
+.inputStyle {
+  width: 100%;
+
+  color: black;
+  background: white;
+  &:hover {
+    background: white;
+    color: black;
+  }
+}

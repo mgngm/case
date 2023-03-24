@@ -1,0 +1,69 @@
+@use 'styles/theme';
+
+.keyMetric {
+  display: flex;
+  flex-direction: column;
+  min-height: 128px;
+  width: 100%;
+  height: 100%;
+  padding: 15px 10px 20px 10px;
+
+  &:hover {
+    background: theme.color('background', 'metricsCollectionSelected');
+
+    &.equality {
+      background: transparent; //remove this when we add equality chart.
+    }
+  }
+
+  .topRow {
+    display: flex;
+    flex: 2;
+
+    .metricTitle {
+      flex: 1;
+      @include theme.breakpoint('md') {
+        @include theme.text('h6', 'bold');
+        padding: 0 10px;
+      }
+      padding-top: 20px;
+      font-size: 14px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  .bottomRow {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    .metricValue {
+      @include theme.breakpoint('md') {
+        @include theme.text('sm', 'bold');
+      }
+      @include theme.text('h2', 'bold');
+    }
+  }
+}
+
+.selected {
+  background: theme.color('background', 'metricsCollectionSelected');
+
+  &.wellbeing {
+    border-radius: 12px 0 0 0;
+  }
+
+  &.revenue {
+    border-radius: 0 12px 0 0;
+  }
+}

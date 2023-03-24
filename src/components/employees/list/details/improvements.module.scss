@@ -1,0 +1,23 @@
+@use 'styles/theme';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+  padding-bottom: 52px + 30px;
+  .heading {
+    margin: 0;
+    @include theme.text('body', 'bold');
+  }
+  .paginationContainer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: theme.color(background, metrics, inner, dark);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

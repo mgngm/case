@@ -1,0 +1,167 @@
+@use 'styles/theme';
+
+.chartAreaWrapper {
+  border-radius: 10px;
+  max-height: 600px;
+  background: white;
+  margin: auto;
+
+  svg {
+    overflow: visible;
+  }
+}
+
+.keyDataWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  gap: 20px;
+}
+
+.subsection {
+  // border: 1px white dashed;
+  margin-bottom: 10px;
+}
+
+.workingLocationTitle {
+  @include theme.text('h3', 'bold');
+  margin-bottom: 1rem;
+}
+
+.workingLocationDonuts {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 0.5rem;
+
+  @include theme.breakpoint('md', 'below') {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.workingLocationDonut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 300px;
+  width: 300px;
+}
+
+.workingLocationDonutIcon {
+  width: 75px;
+  margin-top: 1rem;
+  fill: theme.color('icons', 'light');
+}
+
+.workingLocationDonutTitle {
+  margin-top: 1rem;
+}
+
+.subtitle {
+  @include theme.text('h3', 'semibold');
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.subtitleMargin {
+  @extend .subtitle;
+  margin-bottom: 1.5rem;
+}
+
+.timeVis {
+  margin-top: 1rem;
+  height: 25px;
+  width: 100%;
+  border-radius: 15px;
+  display: flex;
+  overflow: hidden;
+
+  .timeVisRemote {
+    background: theme.color(gradients, remoteWorking, remote);
+    display: block;
+    height: 25px;
+    border-radius: 0 15px 15px 0;
+  }
+
+  .timeVisOffice {
+    display: block;
+    border-radius: 15px 0 0 15px;
+    height: 25px;
+    background: theme.color(gradients, remoteWorking, office);
+  }
+}
+
+.timeVisLegend {
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.legend {
+  @include theme.text('xs');
+}
+
+.satisfiedBandingLegend {
+  fill: theme.color(text, bands, satisfied);
+  stroke: theme.color(text, bands, satisfied);
+  stroke-width: 2px;
+}
+
+.frustratedBandingLegend {
+  fill: theme.color(text, bands, frustrated);
+  stroke: theme.color(text, bands, frustrated);
+  stroke-width: 2px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.legendVal {
+  @include theme.text('h6', 'semibold');
+}
+
+.legendItemSpot {
+  height: 15px;
+  width: 15px;
+  border-radius: 15px;
+  margin: 0 10px;
+}
+
+.remote {
+  background: theme.color(gradients, remoteWorking, remote);
+  fill: theme.color(gradients, remoteWorking, remote);
+  stroke: theme.color(gradients, remoteWorking, remote);
+}
+
+.office {
+  background: theme.color(gradients, remoteWorking, office);
+  fill: theme.color(gradients, remoteWorking, office);
+  stroke: theme.color(gradients, remoteWorking, office);
+}
+
+.frustrated {
+  background: theme.color(text, bands, frustrated);
+  fill: theme.color(text, bands, frustrated);
+}
+
+.satisfied {
+  background: theme.color(text, bands, satisfied);
+  fill: theme.color(text, bands, satisfied);
+}
+
+.suffering {
+  background: theme.color(text, bands, suffering);
+  fill: theme.color(text, bands, suffering);
+}
+
+.barLabel {
+  stroke: white;
+  fill: white;
+  @include theme.text('xs', 'thin');
+  text-transform: capitalize;
+}

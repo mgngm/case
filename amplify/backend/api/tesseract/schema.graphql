@@ -1,0 +1,193 @@
+type PersonaSettings @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  createdAt: AWSDateTime!
+  id: ID!
+  organisation: String!
+  termType: String
+  term: String
+  inputAssumptions: [InputAssumption] @hasMany
+}
+
+type InputAssumption @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  id: ID!
+  termValue: String!
+  timeWorkedPerDay: Int
+  dailyDigitalPercentage: Float
+  payrollPerEmployee: Int
+  revenuePerEmployee: Int
+  numberOfEmployees: Int
+  applicationUsages: [ApplicationUsage] @hasMany
+}
+
+type ApplicationUsage @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  id: ID!
+  target: String! @index(name: "byTarget", queryField: "usageByTarget")
+  percent: Float!
+}
+
+type Partner @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  id: ID!
+  partnerId: String! @index(name: "byPartnerId", queryField: "partnerByPartnerId")
+  partnerName: String
+  organisations: [Organisation] @hasMany
+  status: ContextStatus
+}
+
+type Organisation @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  id: ID!
+  organisationId: String! @index(name: "byOrganisationId", queryField: "organisationByOrganisationId")
+  organisationName: String
+  partner: Partner @belongsTo
+  personaSettings: AWSJSON
+  status: ContextStatus
+}
+
+type ContextMap @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  id: ID!
+  context: String
+  identityProvider: String @index(name: "byIdentityProvider", queryField: "contextByIdentityProvider")
+  defaultContext: String
+}
+
+enum ProjectStatus {
+  NOT_STARTED
+  ON_HOLD
+  IN_PROGRESS
+  COMPLETED
+  ARCHIVED
+}
+
+enum ProjectType {
+  APPLICATION
+  NETWORK_REMOTE
+  NETWORK_OFFICE
+  WIDER_NETWORK
+}
+
+enum AccessLevel {
+  GLOBAL
+  PARTNER
+  ORGANISATION
+}
+
+enum ReportStatus {
+  UPLOADING
+  PROCESSING
+  PREVIEW
+  PUBLISHED
+  FOR_DELETION
+}
+
+enum ContextStatus {
+  CREATED
+  FOR_DELETION
+}
+
+type Report @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  id: ID!
+  context: String @index(name: "byContext", queryField: "reportByContext")
+  reportDate: AWSDate @index(name: "byReportDate", queryField: "reportByReportDate")
+  reportName: String
+  accessLevel: AccessLevel
+  s3Key: String
+  projects: [Project] @hasMany
+  insights: [ProjectInsight] @hasMany
+  projectIds: [String]
+  insightIds: [String]
+  customProjects: AWSJSON
+  reportStatus: ReportStatus
+  dus: [DU] @hasMany
+  reportData: AWSJSON
+}
+
+type ProjectTemplate @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  id: ID!
+  context: String @index(name: "byContext", queryField: "projectTemplateByContext")
+  templateId: String @index(name: "byTemplateId", queryField: "projectTemplateByTemplateId")
+  name: String
+  type: ProjectType
+  body: AWSJSON
+  status: ProjectStatus
+}
+
+type Project @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  id: ID!
+  context: String @index(name: "byContext", queryField: "projectByContext")
+  projectId: String @index(name: "byProjectId", queryField: "projectByProjectId")
+  projectDate: AWSDate
+  projectName: String
+  projectType: ProjectType
+  projectStatus: ProjectStatus
+  projectBody: AWSJSON
+  timeLost: Float
+  hxScore: Float
+  payroll: Float
+  employeeCount: Int
+  report: String
+  dus: [DU] @manyToMany(relationName: "ProjectDus")
+}
+
+type ProjectInsight @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  id: ID!
+  name: String
+  insightDate: AWSDate
+  s3Key: String
+  context: String @index(name: "byContext", queryField: "projectInsightByContext")
+  fileName: String
+}
+
+enum LocationType {
+  OFFICE
+  HYBRID
+  REMOTE
+}
+
+type DU @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  id: ID!
+  name: String @index(name: "byName", queryField: "duByName")
+  context: String @index(name: "byContext", queryField: "duByContext")
+  hxScore: Float
+  persona: String @index(name: "byPersona", queryField: "duByPersona")
+  timeLost: Float
+  payroll: Float
+  revenue: Float
+  locationType: LocationType @index(name: "byLocationType", queryField: "duByLocationType")
+  hybridPercent: Float
+  applications: [String]
+  projects: [Project] @manyToMany(relationName: "ProjectDus")
+
+  reportId: ID! @index(name: "byReport", queryField: "duByReportId", sortKeyFields: ["name"])
+  report: Report @belongsTo(fields: ["reportId"])
+
+  # temporary - these will be replaced by Locations in the future
+  office: String
+  country: String
+  officeHx: Float
+  remoteHx: Float
+
+  locations: AWSJSON # list of EmployeeLocation objects (see types/csv.ts) but we'll need to make this its own table eventually
+  analytics: AWSJSON
+}
+
+enum ParseStatus {
+  UPLOADING
+  IN_PROGRESS
+  ERROR
+  SUCCESS
+}
+
+type Parse @model @auth(rules: [{ allow: private }]) @aws_cognito_user_pools {
+  id: ID!
+  context: String @index(name: "byContext", queryField: "parseByContext")
+  inputAnalyticCsv: String # s3 key
+  inputProjectCsv: String # s3 key
+  previewS3: String #previewS3Key for before we push report to dynamo
+  levers: AWSJSON # { hybridLower: number; hybridUpper: number; workingDays: number } # JSON for easier futureproofing
+  startDateTime: AWSDateTime
+  endDateTime: AWSDateTime
+  status: ParseStatus @index(name: "byStatus", queryField: "parseByStatus")
+  report: Report @hasOne
+  warnings: [String]
+  expectedDus: Int
+  processedDus: Int
+  personaSettings: AWSJSON
+}

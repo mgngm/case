@@ -1,0 +1,6 @@
+// TODO: @Jay why do we want a custom babel file? It turns off swc and doesn't add
+// anything beyond the defaults as far as I can see
+
+{
+  "presets": ["next/babel"]
+}

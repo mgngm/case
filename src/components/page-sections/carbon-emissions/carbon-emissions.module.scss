@@ -1,0 +1,121 @@
+@use 'styles/theme';
+
+.carbonEmissions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 60px theme.color('shadow', 'metricsCollection');
+  border: 1px solid #53387e;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #1a094b;
+}
+
+.keyData {
+  display: flex;
+  border-bottom: 1px solid #53387e;
+}
+
+.chartWrapper {
+  width: 100%;
+  min-height: 500px;
+}
+
+.chartInfo {
+  display: flex;
+  margin: 2rem;
+  align-items: center;
+
+  span {
+    flex: 1;
+    @include theme.text('h2', 'bold');
+  }
+}
+
+.chartTotalAveragePill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartAreaWrapper {
+  border-radius: 10px;
+  max-width: 95%;
+  padding: 1rem;
+  background: white;
+  margin: auto auto 30px auto;
+
+  .chartViewButtons {
+    margin-left: auto;
+    margin-right: 1rem;
+    max-width: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  svg {
+    overflow: visible;
+  }
+}
+
+.invertedSort {
+  transform: scaleY(-1);
+}
+
+.pillIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    fill: #53387e;
+  }
+}
+
+.totalBar {
+  fill: theme.color('charts', 'carbon', 'total');
+}
+
+.savedBar {
+  fill: theme.color('charts', 'carbon', 'saved');
+}
+
+.barLabel {
+  @include theme.text('s', 'regular');
+  text-transform: capitalize;
+}
+
+.barEmployeeCount {
+  @include theme.text('xs', 'thin');
+  text-transform: capitalize;
+  text-anchor: start;
+  stroke: white;
+  fill: white;
+}
+
+.barIcon {
+  fill: white;
+  svg {
+    fill: white;
+  }
+}
+
+.legend {
+  @include theme.text('s');
+}
+
+.axisLabel {
+  @include theme.text('s');
+}
+
+.xAxis {
+  text {
+    @include theme.text('s', 'thin');
+  }
+}
+
+.carbonTable {
+  margin-top: 1rem;
+  color: black;
+}

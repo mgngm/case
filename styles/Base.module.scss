@@ -1,0 +1,8 @@
+@use 'styles/theme';
+/* Generic styles like link decorations */
+
+.link {
+  cursor: pointer;
+  color: theme.color(text, link);
+  text-decoration: underline;
+}

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/filter-parse": {
+      "name": "/filter-parse",
+      "lambdaFunction": "filterParseLambda",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}

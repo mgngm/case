@@ -1,0 +1,102 @@
+@use 'styles/theme';
+
+@mixin container-styles() {
+  background-color: white;
+  border: 1px solid theme.color(border, input);
+  box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: border-color 100ms ease;
+  &:focus-within,
+  &:focus {
+    border-color: theme.color(button, light);
+  }
+  &.invalid,
+  &:invalid {
+    border-color: theme.color('text', 'error');
+  }
+}
+
+@mixin input-styles {
+  outline: none;
+  &::placeholder {
+    color: rgba(theme.color(text, grey, dark), 0.5);
+    transition: color 100ms ease;
+  }
+  &:hover::placeholder,
+  &:focus::placeholder {
+    color: theme.color(text, grey, dark);
+  }
+}
+
+.input {
+  position: relative;
+  height: 36px;
+  @include container-styles();
+  transition: border-color 100ms, padding-right 200ms;
+  &:focus-within {
+    .endIcon {
+      color: theme.color(button, light);
+    }
+  }
+  &.invalid {
+    color: red;
+  }
+  .inputInput {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: none;
+    @include input-styles();
+  }
+  &.hasClear,
+  &.hasEndIcon {
+    padding-right: 24px + 20px;
+  }
+  .endIconContainer {
+    position: absolute;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding: 10px;
+    color: rgba(theme.color(text, grey, dark), 0.3);
+    .endIcon,
+    .clearIcon {
+      width: 24px;
+      transition: color 100ms ease;
+    }
+    .clearIcon {
+      cursor: pointer;
+    }
+    .clearIconContainer {
+      width: 0;
+      display: flex;
+      align-items: center;
+      transition: width 200ms;
+      overflow: hidden;
+    }
+  }
+  &.hasClear {
+    .clearIconContainer {
+      width: 24px;
+    }
+    &.hasEndIcon {
+      padding-right: (10px * 2) + (24px * 2) + 1px + (5px * 2); // padding + two icons + divider + divider margin
+      .clearIconContainer {
+        width: 24px + 1px + (5px * 2); // icon + divider + divider margin
+      }
+    }
+  }
+  .clearDivider {
+    margin: 0 5px;
+    width: 1px;
+    height: 22px;
+    border-radius: 40px;
+    background-color: theme.color(border, input-divider);
+    flex-shrink: 0;
+  }
+}

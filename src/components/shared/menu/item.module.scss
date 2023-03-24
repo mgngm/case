@@ -1,0 +1,40 @@
+@use 'styles/theme';
+
+.item {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  padding-right: 24px;
+  cursor: pointer;
+  @include theme.text('body1');
+  white-space: nowrap;
+  &:not(:last-child) {
+    border-bottom: 1px solid theme.color('border', 'light-grey');
+  }
+  .icon {
+    font-size: 20px;
+    margin-right: 12px;
+  }
+  &:hover {
+    background-color: rgba(black, 0.05);
+  }
+  &.selected {
+    background-color: rgba(theme.color('button', 'light'), 0.1);
+    &:hover {
+      background-color: rgba(theme.color('button', 'light'), 0.15);
+    }
+  }
+  &.danger {
+    color: theme.color('text', 'error');
+    &:hover {
+      background-color: rgba(theme.color('text', 'error'), 0.05);
+    }
+    &.selected {
+      background-color: rgba(theme.color('text', 'error'), 0.1);
+      &:hover {
+        background-color: rgba(theme.color('text', 'error'), 0.15);
+      }
+    }
+  }
+}

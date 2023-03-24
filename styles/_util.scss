@@ -1,0 +1,61 @@
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+/// Flattens a nested map to a given depth, optionally prefixing each value with its path
+/// @param {Map} $maps
+/// @param {Boolean} $prefix [true]
+/// @param {Number} $depth [1]
+/// @param {Boolean} $reverse-prefix [true]
+/// @return {Map}
+
+@function map-flat($maps, $depth: 1, $prefix: true, $reverse-prefix: true) {
+  $flat-map: ();
+  @each $key, $map in $maps {
+    @if type-of($map) != 'map' {
+      $flat-map: map.set($flat-map, $key, $map);
+    } @else {
+      @if $prefix {
+        $prefixed-map: ();
+        @each $inner-key, $inner-val in $map {
+          $prefixed-map: map.merge(
+            $prefixed-map,
+            (#{if($reverse-prefix, #{$inner-key}-#{$key}, #{$key}-#{$inner-key})}: $inner-val)
+          );
+        }
+        @if $depth > 1 {
+          $prefixed-map: map-flat($prefixed-map, $prefix, $depth - 1, $reverse-prefix);
+        }
+        $flat-map: map.merge($flat-map, $prefixed-map);
+      } @else {
+        @if $depth > 1 {
+          $map: map-flat($map, $prefix, $depth - 1, $reverse-prefix);
+        }
+        $flat-map: map.merge($flat-map, $map);
+      }
+    }
+  }
+  @return $flat-map;
+}
+
+@mixin mapToProps($map) {
+  @each $prop, $val in $map {
+    #{$prop}: $val;
+  }
+}
+
+@mixin button-reset() {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+@mixin overflow-ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

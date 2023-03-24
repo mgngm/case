@@ -1,0 +1,96 @@
+@use 'styles/theme';
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap');
+
+.warningIcon {
+  width: 50px !important;
+  height: 50px !important;
+  //Stupid mui thing won't let me use a theme.color here for some reason
+  fill: #00a9b4 !important;
+}
+
+.mainContentEmptyState {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .emptyStateTitle {
+    @include theme.text('h2', 'semibold');
+    margin: 20px 0;
+  }
+
+  .emptyStateMessage {
+    @include theme.text('h4', 'regular');
+    .link {
+      color: theme.color('text', 'link');
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.mainContentWrapper {
+  width: calc(100% - 60px);
+  max-width: 1440px;
+  min-width: 425px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem auto;
+  padding: 0 20px;
+
+  &.tablePageWrapper {
+    max-width: none;
+    min-height: 100vh;
+    min-width: 725px;
+    margin: 0;
+    background: theme.color('lightTheme', 'background', 'main');
+    color: theme.color('lightTheme', 'text', 'body');
+    padding: 1rem 20px;
+
+    .pageSections {
+      @include theme.breakpoint('md') {
+        padding: 1rem 30px;
+      }
+    }
+  }
+
+  .pageSections {
+    width: 100%;
+    @include theme.breakpoint('md') {
+      padding: 0 60px;
+      gap: 3em;
+      margin-bottom: 3rem;
+    }
+
+    .title {
+      @include theme.text('h6', 'black', $heading: true);
+      letter-spacing: 2px;
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+.loadingWrapper {
+  position: relative;
+  top: -30px;
+  height: calc(100vh - 81px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: theme.color(gradients, background, dark);
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    theme.color(gradients, background, light) 0%,
+    theme.color(gradients, background, dark) 100%
+  );
+}

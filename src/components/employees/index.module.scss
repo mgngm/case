@@ -1,0 +1,35 @@
+@use 'styles/theme';
+
+.employeesMain {
+  padding: 0;
+  padding-bottom: 50px;
+  align-items: start;
+  align-self: start;
+  width: 100%;
+  color: theme.color('lightTheme', 'text', 'body');
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    .employeesReportName {
+      color: theme.color('lightTheme', 'text', 'subtitle');
+      label {
+        margin-right: 10px;
+
+        & + div {
+          display: inline-block;
+        }
+      }
+    }
+
+    h1 {
+      flex: 1;
+      margin: 0;
+      @include theme.text('h2', 'bold');
+      color: theme.color('lightTheme', 'text', 'title');
+    }
+  }
+}

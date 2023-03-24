@@ -1,0 +1,60 @@
+version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - '# Execute Amplify CLI with the helper script'
+        - amplifyPush --simple
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm -v
+        - npm install @swc/core-linux-x64-gnu @next/swc-linux-x64-musl esbuild-linux-64
+        - npm ci
+        - cp src/aws-exports.js lambda/du/aws-exports.js
+        - cp src/aws-exports.js lambda/parse/aws-exports.js
+        - cp src/aws-exports.js lambda/publish/aws-exports.js
+        - cp src/aws-exports.js lambda/dynamoDelete/aws-exports.js
+        - cp src/aws-exports.js lambda/filterParse/aws-exports.js
+    build:
+      commands:
+        - if [[ -n $(env | grep -e MAINTENANCE_MODE) ]]; then env | grep -e MAINTENANCE_MODE >> .env.production; fi
+        - if [[ -n $(env | grep -e NEXT_PUBLIC_) ]]; then env | grep -e NEXT_PUBLIC_ >> .env.production; fi
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
+test:
+  phases:
+    preTest:
+      commands:
+        - cp src/aws-exports.js lambda/du/aws-exports.js
+        - cp src/aws-exports.js lambda/parse/aws-exports.js
+        - cp src/aws-exports.js lambda/publish/aws-exports.js
+        - cp src/aws-exports.js lambda/dynamoDelete/aws-exports.js
+        - cp src/aws-exports.js lambda/filterParse/aws-exports.js
+        - if [ ! -z $TESTS_ENABLED ]; then npm ci; else echo "Skipping Tests..."; fi
+        - if [ ! -z $TESTS_ENABLED ]; then npm install wait-on pm2 mocha mochawesome mochawesome-merge mochawesome-report-generator; else echo "Skipping Tests..."; fi
+        - if [ ! -z $TESTS_ENABLED ]; then npm run build; else echo "Skipping Tests..."; fi
+        - if [ ! -z $TESTS_ENABLED ]; then npx pm2 start npm -- run start; else echo "Skipping Tests..."; fi
+        - if [ ! -z $TESTS_ENABLED ]; then npx wait-on --timeout 60000 http://localhost:3000; else echo "Skipping Tests..."; fi
+    test:
+      commands:
+        - if [ ! -z $TESTS_ENABLED ]; then CYPRESS_BASE_URL="http://localhost:3000" npm run cypress:run -- --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"; else echo "Skipping Tests..."; fi
+    postTest:
+      commands:
+        - if [ ! -z $TESTS_ENABLED ]; then npx mochawesome-merge cypress/report/mochawesome-report/mochawesome*.json > cypress/report/mochawesome.json; fi
+        - if [ ! -z $TESTS_ENABLED ]; then npx pm2 kill; else echo "Skipping Tests..."; fi
+  artifacts:
+    baseDirectory: cypress
+    configFilePath: '**/mochawesome.json'
+    files:
+      - 'report/**/*.json'
+      - '**/*.png'
+      - '**/*.mp4'

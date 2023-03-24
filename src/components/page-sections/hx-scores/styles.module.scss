@@ -1,0 +1,12 @@
+@use 'styles/theme';
+
+.hxGraphicsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  @include theme.breakpoint('md') {
+    gap: 70px 35px;
+  }
+  gap: 35px;
+}

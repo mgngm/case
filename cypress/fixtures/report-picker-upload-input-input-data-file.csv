@@ -1,0 +1,4 @@
+DU Name,Target Name,Mission Name,Mean Quality Score,Potential Quality Score,Wasted Time Percent,Quality Score Weight,HX Score,Interface Type,Device IP,DNS IP,Location,Country,Region,City,du.Organisation
+L348615,Actual O365,web-bea581,79.6,80,0.005,293,10,n/a,n/a,n/a,Westminster Nobel House (220WNH),United Kingdom,n/a,n/a,EA
+L304085,Actual O365,web-bea581,78.9,80,0.01375,1,10,n/a,n/a,n/a,remote,United Kingdom,n/a,n/a,NE
+L322680,Actual O365,web-bea581,79.8,80,0.0025,1,10,n/a,n/a,n/a,remote,United Kingdom,n/a,n/a,Actual

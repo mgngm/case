@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://web-ui.shared.actual.zone/persona-settings.schema.json",
+  "title": "Persona Settings",
+  "description": "Persona Settings",
+  "type": "object",
+  "properties": {
+    "termType": {
+      "type": "string"
+    },
+    "term": {
+      "type": "string"
+    },
+    "inputAssumptions": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "properties": {
+            "TIME_WORKED_PER_DAY": {
+              "type": "number",
+              "minimum": 0
+            },
+            "DAILY_DIGITAL_PERCENTAGE": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "PAYROLL_PER_EMPLOYEE": {
+              "type": "number",
+              "minimum": 0
+            },
+            "REVENUE_PER_EMPLOYEE": {
+              "type": "number",
+              "minimum": 0
+            },
+            "NUMBER_OF_EMPLOYEES": {
+              "type": "number",
+              "minimum": 0
+            },
+            "applications": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "termType",
+    "term",
+    "inputAssumptions"
+  ]
+}

@@ -1,0 +1,42 @@
+@use 'styles/theme';
+@use 'styles/util';
+
+.tab {
+  @include util.button-reset();
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px - 4px;
+  padding: 10px;
+  margin-bottom: 4px;
+  position: relative;
+  opacity: 0.5;
+  transition: opacity 200ms ease;
+  &::after {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    bottom: -4px;
+    border-radius: 10px 10px 0px 0px;
+    background-color: transparent;
+    transition: background-color 200ms ease;
+  }
+  &:hover {
+    opacity: 1;
+    &::after {
+      background-color: rgba(black, 0.1);
+    }
+  }
+  &.selected {
+    opacity: 1;
+    &::after {
+      background-color: theme.color('button', 'light');
+    }
+  }
+}
+
+.tabContainer {
+  display: flex;
+  gap: 10px;
+}

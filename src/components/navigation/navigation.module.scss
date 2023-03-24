@@ -1,0 +1,144 @@
+@use 'styles/theme';
+
+.navPageWrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-direction: row;
+  position: relative;
+
+  &:has(:global(.table-page)) {
+    background-color: theme.color('lightTheme', 'background', 'main');
+  }
+}
+
+.navBarOuter {
+  min-width: 70px;
+
+  .navBarInner {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+
+    border-right: 1px solid #31225d;
+    background: #19044e;
+
+    transition: width 0.3s ease;
+
+    &:hover {
+      width: 230px;
+
+      .navLogo a span:last-child {
+        opacity: 1 !important;
+        visibility: visible;
+      }
+
+      .menuItem span {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    .navLogo {
+      position: relative;
+      top: 10px;
+      height: 55px;
+      width: 160px;
+
+      a span:first-child {
+        width: 32px !important;
+        left: 20px !important;
+      }
+
+      a span:last-child {
+        left: 62px !important;
+        top: -3px !important;
+        height: 55px !important;
+        opacity: 0 !important;
+        transition: opacity 0.3s ease;
+      }
+    }
+
+    .topMenuItems,
+    .bottomMenuItems {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 60px;
+    }
+
+    .bottomMenuItems {
+      margin-top: auto;
+    }
+
+    .linkButton {
+      margin: 0;
+      padding: 0;
+      font-size: 1rem !important;
+    }
+
+    .menuItem {
+      width: 230px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      cursor: pointer;
+      padding-left: 25px;
+
+      svg {
+        fill: #8167ab;
+        width: 20px;
+        height: 20px;
+      }
+
+      span {
+        margin-left: 20px;
+        color: #8167ab;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      &:hover {
+        svg {
+          fill: white;
+        }
+        span {
+          color: white;
+        }
+      }
+
+      &.selected {
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          // left: -9px;
+          left: 0;
+          bottom: 0;
+          width: 4px;
+          background: linear-gradient(189.05deg, #01a3c6 9.71%, #01c3b8 95.98%);
+          border-radius: 0 10px 10px 0;
+        }
+
+        svg {
+          fill: white;
+        }
+
+        span {
+          color: white;
+        }
+      }
+    }
+  }
+}

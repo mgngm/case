@@ -1,0 +1,118 @@
+@use 'styles/theme';
+
+.workingLocationsWrapper {
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dataTypeSelector {
+  display: flex;
+  @include theme.text('h6', 'bold');
+  width: 100%;
+  position: relative;
+  justify-content: center;
+
+  flex-direction: column;
+  align-items: center;
+
+  select {
+    margin-bottom: 10px;
+  }
+}
+
+.dataTypePill {
+  margin-top: 20px;
+}
+
+.dataType {
+  padding: 7px 25px;
+}
+
+.workingLocationsContent {
+  display: flex;
+  @include theme.breakpoint('lg', 'below') {
+    flex-direction: column;
+  }
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+}
+
+.workingLocationSingle {
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid theme.color('border', 'dark');
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.workingLocationTitle {
+  @include theme.breakpoint('md') {
+    @include theme.text('sm', 'bold');
+  }
+  @include theme.text('h4', 'bold');
+  text-align: center;
+  letter-spacing: 5px;
+  text-transform: capitalize;
+}
+
+.workingLocationSummary {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+.overviewSummaryColor {
+  height: 15px;
+  width: 15px;
+  border-radius: 10px;
+  @include theme.text('h6');
+}
+
+.overviewSummaryColorBad {
+  @extend .overviewSummaryColor;
+  background: theme.color(gradients, bands, suffering, light);
+}
+
+.overviewSummaryColorOK {
+  @extend .overviewSummaryColor;
+  background: theme.color(gradients, bands, frustrated, light);
+}
+
+.overviewSummaryColorGood {
+  @extend .overviewSummaryColor;
+  background: theme.color(gradients, bands, satisfied, light);
+}
+
+.breakdownPercentage {
+  font-weight: theme.typography('font-weight', 'bold');
+}
+
+.workingLocationIcon {
+  @include theme.breakpoint('md') {
+    margin-top: 40px;
+    margin-bottom: 25px;
+    height: 70px;
+    width: 70px;
+  }
+  margin-top: 40px;
+  margin-bottom: 15px;
+  height: 60px;
+  width: 60px;
+  fill: theme.color('icons', 'light');
+}

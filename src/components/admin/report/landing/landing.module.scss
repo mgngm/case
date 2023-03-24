@@ -1,0 +1,156 @@
+@use 'styles/theme';
+
+.landingWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.personaSettings {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  .personaSettingsInfo {
+    display: flex;
+    align-items: center;
+    h2 {
+      @include theme.text('h2', 'regular');
+    }
+
+    .personaIcon {
+      margin: 0 0.5rem;
+    }
+
+    button {
+      margin-left: 1rem;
+    }
+  }
+
+  .personaSettingsButtons {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    min-width: 400px;
+
+    background: theme.color(background, adminCard);
+    border: 1px solid theme.color(border, dark);
+    box-shadow: 0px 0px 60px 0px theme.color(shadow, adminCard);
+    border-radius: 6px;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .personaLoading {
+    height: 30px;
+  }
+}
+
+.landingCard {
+  width: 50%;
+  background: theme.color(background, adminCard);
+  border: 1px solid theme.color(border, dark);
+  box-shadow: 0px 0px 60px 0px theme.color(shadow, adminCard);
+  border-radius: 6px;
+  padding: 2rem;
+  min-height: 150px;
+}
+
+.editSelect {
+  height: 2.5rem;
+  margin: 1rem 0;
+  color: theme.color(text, card);
+  background: theme.color(background, card);
+
+  &:hover {
+    background: theme.color(background, card);
+    color: theme.color(text, card);
+  }
+}
+
+.editButton {
+  background: theme.color(button, teal) !important;
+  color: theme.color(text, body) !important;
+}
+
+.inputStyle {
+  color: black;
+  background: white;
+  &:hover {
+    background: white;
+    color: black;
+  }
+}
+
+.nameWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  label {
+    margin-bottom: 1rem;
+  }
+}
+
+.dateWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  label {
+    margin-bottom: 1rem;
+  }
+
+  .dateWarning {
+    margin-top: 1rem;
+    width: 100%;
+  }
+}
+
+.noSettings {
+  text-align: center;
+  span {
+    font-weight: bold;
+  }
+}
+
+.loadingWrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list {
+  .listTitle {
+    display: flex;
+    align-items: center;
+
+    .refreshButton {
+      color: white;
+      margin-right: auto;
+      margin-left: 8px;
+      .loadingContainer {
+        text-align: left;
+        height: 24px;
+        width: 24px;
+        display: inline-flex;
+      }
+    }
+
+    .createButton {
+      margin-left: 8px;
+    }
+  }
+}
+
+.search {
+  margin-left: 20px;
+}

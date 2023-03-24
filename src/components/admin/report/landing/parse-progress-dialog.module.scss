@@ -1,0 +1,53 @@
+@use 'styles/theme';
+
+.parseLoading {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  flex-direction: column;
+  width: 100%;
+
+  .parseLoader {
+    margin-bottom: 0.5rem;
+    display: flex;
+  }
+}
+
+.parseInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+
+  .parseDetails {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .showParseWarningWrap {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.parseWarnings {
+  overflow: hidden;
+  width: 100%;
+
+  .parseWarning {
+    background: #ebebeb;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    overflow: auto;
+    max-height: 150px;
+
+    pre {
+      white-space: pre-wrap;
+      margin: 0;
+    }
+  }
+}

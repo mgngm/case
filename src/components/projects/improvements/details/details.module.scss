@@ -1,0 +1,63 @@
+@use 'styles/theme';
+
+.tabContentWrap {
+  padding: 1rem;
+}
+
+.overviewInfo {
+  .tableWrap {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+    vertical-align: middle;
+  }
+
+  .infoTable {
+    flex: 1 1 40%;
+    min-width: 300px;
+    border: 0 none;
+    border-collapse: collapse;
+
+    .labelWrapper {
+      width: 50%;
+      vertical-align: middle;
+      white-space: nowrap;
+
+      label {
+        margin: 0.25rem 0;
+        display: inline-block;
+        font-weight: 400;
+        color: rgba($color: white, $alpha: 0.8);
+
+        & + div {
+          position: relative;
+          top: 2px;
+          left: 5px;
+        }
+      }
+    }
+
+    .projectInfo {
+      font-weight: 700;
+    }
+  }
+}
+
+.overviewMetrics {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 2rem;
+
+  .projectHero {
+    flex: 1 0 45%;
+
+    @include theme.breakpoint('md', 'below') {
+      flex: 1 0 100%;
+    }
+  }
+}

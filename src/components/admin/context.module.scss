@@ -1,0 +1,90 @@
+@use 'styles/theme';
+
+.orgWrapperFullWidth {
+  width: 100%;
+}
+
+.orgForm {
+  display: flex;
+  flex-direction: row !important;
+  align-items: baseline;
+  justify-content: flex-end;
+}
+
+.accessLevelForm {
+  display: flex;
+}
+
+.labelDisabled {
+  opacity: 0.5;
+}
+
+.contextLabel {
+  @include theme.breakpoint('sm', 'below') {
+    display: none;
+  }
+}
+
+.orgSelect,
+.aeSelect {
+  height: 3rem;
+  margin-left: 0.5rem;
+  min-width: 250px;
+
+  @include theme.breakpoint('sm', 'below') {
+    margin-top: 1rem;
+  }
+
+  & > div {
+    padding-top: 1.5rem;
+  }
+}
+
+.defaultOrgSelect {
+  @extend .orgSelect;
+  margin-left: 0;
+}
+
+.orgSelectFullWidth,
+.aeSelectFullWidth {
+  height: 3rem;
+  margin-left: 0.5rem;
+  min-width: 100%;
+
+  & > div {
+    padding-top: 1.5rem;
+  }
+}
+
+.selectItem,
+.contextItem {
+  height: 3rem;
+}
+
+.partnerName,
+.miniTitle {
+  font-size: 0.5rem;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+}
+
+.loading {
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.loadingWrapper {
+  height: 30px;
+}
+
+.usersOrgWrapper {
+  display: flex;
+  margin-bottom: 2rem;
+
+  .orgForm {
+    justify-content: flex-start;
+  }
+}

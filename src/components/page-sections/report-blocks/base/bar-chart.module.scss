@@ -1,0 +1,239 @@
+@use 'styles/theme';
+
+.chartAreaWrapper {
+  border-radius: 10px;
+  max-width: 700px;
+  max-height: 600px;
+  background: white;
+  margin: auto;
+
+  svg {
+    overflow: visible;
+  }
+}
+
+.chartAreaWrapperWellbeing {
+  @extend .chartAreaWrapper;
+  max-width: 100%;
+}
+
+.emptyWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.emptyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.axis {
+  line,
+  path,
+  text {
+    stroke: #363636;
+    font-family: theme.$body-font;
+    text-transform: capitalize;
+    @include theme.text('s', 'regular');
+    font-weight: 100;
+  }
+
+  line,
+  path {
+    stroke: #e1e1e1;
+  }
+
+  &.noLine {
+    path {
+      visibility: hidden;
+    }
+  }
+}
+
+.HXaxis {
+  @extend .axis;
+  text {
+    @include theme.text('xs');
+  }
+
+  &.noLine {
+    path {
+      visibility: hidden;
+    }
+  }
+}
+
+.yAxisGrid {
+  line {
+    stroke: #e1e1e1;
+  }
+}
+
+.axisLabel {
+  @include theme.text('s', 'semibold');
+}
+
+.axisLabelWhite {
+  @include theme.text('s', 'semibold');
+  stroke: white;
+  fill: white;
+}
+
+.chartFrame {
+  stroke: #e1e1e1;
+  stroke-width: 1px;
+}
+
+.average {
+  fill: purple;
+  stroke: purple;
+  stroke-width: 2px;
+}
+
+.frustratedBoundary {
+  fill: theme.color('text', 'bands', 'frustrated');
+  stroke: theme.color('text', 'bands', 'frustrated');
+  stroke-width: 1px;
+  stroke-dasharray: 3px 3px;
+}
+
+.satisfiedBoundary {
+  fill: theme.color('text', 'bands', 'satisfied');
+  stroke: theme.color('text', 'bands', 'satisfied');
+  stroke-width: 1px;
+  stroke-dasharray: 3px 3px;
+}
+
+.dataLine {
+  stroke: red;
+  fill: none;
+  stroke-width: 2px;
+}
+
+.breakdownBar {
+  fill: theme.color('gradients', 'bands', 'suffering', 'light');
+  stroke: white;
+  stroke-width: 0.3px;
+
+  &:hover {
+    fill: theme.color('gradients', 'bands', 'suffering', 'dark');
+  }
+}
+
+.barText {
+  @include theme.text('xs', 'light');
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+
+  @include theme.breakpoint('md', 'below') {
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+
+  .dataTypeSelector {
+    @include theme.text('h6', 'bold');
+  }
+
+  .title {
+    @include theme.breakpoint('md') {
+      @include theme.text('h3', 'bold');
+    }
+    @include theme.text('h5', 'black');
+    text-transform: capitalize;
+  }
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltipWrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid rgb(0, 0, 0, 0.2);
+  color: black;
+  min-width: 200px;
+  border-radius: 7px;
+}
+
+.tooltipHeader {
+  background: linear-gradient(
+    189.05deg,
+    theme.color(gradients, button, dark) 9.71%,
+    theme.color(gradients, button, light) 95.98%
+  );
+  color: white;
+  font-weight: bold;
+  padding: 0 10px;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  max-height: 40px;
+  border-radius: 7px 7px 0 0;
+
+  &_frustrated {
+    background: linear-gradient(
+      189.05deg,
+      theme.color('gradients', 'bands', 'frustrated', 'dark') 9.71%,
+      theme.color('gradients', 'bands', 'frustrated', 'light') 95.98%
+    );
+  }
+
+  &_suffering {
+    background: linear-gradient(
+      189.05deg,
+      theme.color('gradients', 'bands', 'suffering', 'dark') 9.71%,
+      theme.color('gradients', 'bands', 'suffering', 'light') 95.98%
+    );
+  }
+
+  &_satisfied {
+    background: linear-gradient(
+      189.05deg,
+      theme.color('gradients', 'bands', 'satisfied', 'dark') 9.71%,
+      theme.color('gradients', 'bands', 'satisfied', 'light') 95.98%
+    );
+  }
+
+  &_worstOffices {
+    border-radius: 5px 5px 0 0;
+    color: white;
+    background: linear-gradient(
+      189.05deg,
+      theme.color('gradients', 'background', 'light') 9.71%,
+      theme.color('gradients', 'background', 'light') 95.98%
+    );
+  }
+}
+
+.tooltipInner {
+  padding: 0 10px;
+}
+
+rect.suffering {
+  fill: red;
+}
+
+.revenueAverage {
+  stroke: blue;
+}
+
+.legend {
+  @include theme.text('s', 'light');
+}
+
+.innerTickDashed {
+  stroke: #8167ab;
+  opacity: 0.5;
+}

@@ -1,0 +1,31 @@
+.icon {
+  cursor: pointer;
+
+  & > svg {
+    width: 20px;
+    height: 20px;
+    fill: rgba(255, 255, 255, 0.2);
+  }
+
+  &:hover {
+    & > svg {
+      fill: rgba(255, 255, 255, 1);
+    }
+  }
+}
+
+.info {
+  .infoIcon {
+    display: none;
+  }
+
+  &:hover {
+    .infoIcon {
+      display: inline;
+    }
+
+    .infoOutlineIcon {
+      display: none;
+    }
+  }
+}

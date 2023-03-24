@@ -1,0 +1,28 @@
+.NotFoundBackground {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/assets/not-found/background-stars.svg');
+  background-position: center;
+  background-size: cover;
+}
+
+.NotFoundImage {
+  width: 500px;
+  height: 500px;
+  max-width: 500px;
+  max-height: 500px;
+  position: relative;
+  animation: rotation 200s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

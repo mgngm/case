@@ -1,0 +1,210 @@
+@use 'styles/theme';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  border-bottom: 1px solid theme.color(divider, header);
+  color: theme.color(text, body);
+  margin-bottom: 20px;
+  padding: 0 0 0 15px;
+
+  @include theme.breakpoint('md') {
+    padding: 0 30px;
+    margin-bottom: 30px;
+  }
+
+  .icon__btn {
+    display: flex;
+    align-items: center;
+  }
+
+  .topLeftLogo {
+    position: relative;
+    height: 50px;
+    max-width: 112px;
+    flex: 1 1;
+    cursor: pointer;
+
+    @include theme.breakpoint('md') {
+      max-width: 150px;
+      height: 70px;
+    }
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: row;
+    flex: 4;
+    justify-content: right;
+    gap: 40px;
+    margin-right: 40px;
+
+    .menuItem {
+      @include theme.text('h5', 'bold', 'none');
+      padding: 0 15px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .menuItem:after {
+      content: '';
+      width: 100%;
+      background: theme.color(divider, header);
+      height: 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .menuItem.selected:after,
+    .menuItem:hover:after {
+      height: 6px;
+    }
+
+    .menuItem.selected:after,
+    .menuItem.selected:hover:after {
+      background: linear-gradient(
+        189.05deg,
+        theme.color(gradients, button, dark) 0%,
+        theme.color(gradients, button, light) 100%
+      );
+    }
+  }
+}
+
+.tabContainer {
+  margin-bottom: 0 !important;
+}
+
+.menuLink {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.menuIcon svg {
+  height: 34px;
+  width: 34px;
+  fill: theme.color('text', 'body');
+}
+
+.loadingWrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 64px 128px;
+}
+
+.dialogWrapper {
+  width: 750px;
+}
+
+.subsectionHeader {
+  @include theme.text('h5', 'bold', 'none');
+  flex: 1;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.subSectionSubtitle {
+  margin-top: 0.5rem;
+  @include theme.text('s', 'semibold', 'none');
+}
+
+.subSectionContent {
+  margin-top: 1rem;
+}
+
+.reportsWrapper {
+  min-height: 400px - 48px;
+}
+
+.fileCount {
+  @include theme.text('xs', 'regular', 'none');
+  color: theme.color(text, subtitle);
+  margin-left: 0.5rem;
+}
+
+.reportPickerWrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .reportPickerContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .datePicker {
+      display: flex;
+
+      .datePickerInput {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+
+        .yearSelect {
+          width: 80%;
+          height: 80%;
+        }
+
+        .fileCount {
+          margin-left: 0;
+        }
+      }
+    }
+    .reportList {
+      margin-top: 0.5rem;
+      padding-top: 0;
+      overflow: auto;
+      height: 300px;
+    }
+  }
+}
+
+.selectLabel {
+  margin: 1rem 0.5rem;
+}
+
+.refReportName {
+  margin: 1rem 0.5rem;
+}
+
+.actions {
+  background: white;
+  z-index: 30;
+}
+
+.reportListEmpty {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    width: 80%;
+  }
+}
+
+.refReportTooltip {
+  display: block;
+  text-align: left;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}

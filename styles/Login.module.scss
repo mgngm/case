@@ -1,0 +1,103 @@
+@use 'styles/theme';
+
+.loginScreen {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+
+  .loginFormWrapper {
+    color: theme.color(text, card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 55px 40px 60px;
+    max-width: 420px;
+    width: 100%;
+    background: theme.color(background, card);
+    border: 1px solid theme.color(divider, login);
+    box-shadow: 0px 10px 200px theme.color(shadow, login);
+    border-radius: 10px;
+
+    .loginForm {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 225px;
+      gap: 10px;
+
+      .loginFormInput,
+      .loginFormInputError {
+        margin: 10px 0;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid #d7d7d7;
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        padding: 0 12px;
+      }
+
+      .loginFormInputError {
+        border-color: theme.color(text, error);
+      }
+
+      .loginFormButtonWrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+      }
+
+      .loginFormError {
+        color: theme.color(text, error);
+      }
+    }
+  }
+
+  .resetPasswordWrapper {
+    margin: 0.5rem 0 3rem 0;
+    font-weight: 300;
+  }
+}
+
+.info {
+  text-align: center;
+}
+
+.link {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.qrCode {
+  display: flex;
+  justify-content: center;
+}
+
+.termsAndConditions {
+  width: 100%;
+  text-align: center;
+  border-top: 1px dashed rgba(white, 0.1);
+  max-width: 800px;
+
+  @include theme.text('xs', 'regular');
+  color: rgba(255, 255, 255, 0.3);
+
+  .tocMain {
+    padding-top: 1.5rem;
+
+    a {
+      text-decoration: underline;
+      color: white;
+    }
+  }
+  .tocSub {
+    margin-top: 1rem;
+  }
+}

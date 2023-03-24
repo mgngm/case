@@ -1,0 +1,73 @@
+@use 'styles/theme';
+
+.overviewWrapper {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  padding: 30px;
+
+  .heading {
+    margin: 0;
+  }
+
+  h2 {
+    font-weight: 600;
+  }
+}
+
+.duInfoWrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  vertical-align: middle;
+
+  .infoTable {
+    flex: 1 1 40%;
+    min-width: 300px;
+    border: 0 none;
+    border-collapse: collapse;
+
+    .labelWrapper {
+      width: 33%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+
+      label {
+        margin: 0.25rem 0;
+        display: inline-block;
+        font-weight: 400;
+        color: rgba($color: white, $alpha: 0.8);
+
+        & + div {
+          position: relative;
+          top: 2px;
+          left: 5px;
+        }
+      }
+    }
+
+    .duInfo {
+      font-weight: 700;
+    }
+  }
+}
+
+.duMetricsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  .employeeHero {
+    flex: 1 0 45%;
+
+    @include theme.breakpoint('md', 'below') {
+      flex: 1 0 100%;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@use 'styles/theme';
+
+.pageSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .title {
+    @include theme.breakpoint('md') {
+      @include theme.text('h1', 'black', $heading: true);
+      letter-spacing: 4px;
+    }
+    @include theme.text('h6', 'black', $heading: true);
+    letter-spacing: 2px;
+    text-align: center;
+  }
+}

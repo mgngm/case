@@ -1,0 +1,294 @@
+@use 'styles/theme';
+
+.projectsWrapper {
+  align-items: start;
+  align-self: start;
+  width: 100%;
+
+  .projectsTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .projectReportName {
+      color: theme.color('lightTheme', 'text', 'subtitle');
+
+      label {
+        margin-right: 10px;
+
+        & + div {
+          display: inline-block;
+        }
+      }
+    }
+    h1 {
+      flex: 1;
+      margin: 0;
+      @include theme.text('h2', 'bold');
+      color: theme.color('lightTheme', 'text', 'title');
+    }
+  }
+}
+
+.projectsContent {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+$transition-time: 500ms;
+$overlay: rgba(255, 255, 255, 0.04);
+$shadow: 0px 0px 60px theme.color(shadow, metricsCollection);
+$border-active: 1px solid theme.color(border, main);
+$border: 1px solid theme.color(border, dark);
+$border-radius: 6px;
+
+$block-background: #1d0a53;
+
+.projectWrap {
+  width: 100%;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  border: $border;
+  transition-duration: 125ms;
+  transition-property: border, box-shadow, background;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.emptyBlockWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2rem 0;
+  padding: 2rem;
+
+  p {
+    margin: 0;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+  }
+
+  .emptyBlockIcon {
+    svg {
+      width: 35px;
+      height: 35px;
+    }
+  }
+}
+
+.projectTitle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 20px;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.projectTitleClosed {
+  &:hover {
+    box-shadow: 0px 0px 60px theme.color(shadow, hover);
+    background: $overlay;
+  }
+}
+
+.arrowIcon {
+  margin-left: auto;
+  color: #c3abf5;
+
+  &.collapsed {
+    transform: rotate(-180deg);
+  }
+
+  transition: transform $transition-time ease-in-out;
+  height: 34px;
+  width: 34px;
+}
+.projectExpandWrap {
+  max-height: 0px;
+  transition: max-height $transition-time ease-in-out, visbility $transition-time ease-in-out;
+
+  &.projectExpanded {
+    max-height: 500vh; // as its a max height it scrolls to the end of the content within the block as as long as there's not SO MUCH CONTENT you can't go 6x over the height of the current screen you're good.
+    transition: max-height $transition-time ease-in-out, visbility $transition-time ease-in-out;
+    overflow: hidden;
+    border-top: $border;
+    background: #1a094b;
+    mix-blend-mode: normal;
+    visibility: visible;
+  }
+}
+
+.projectMetricWrap {
+  width: 100%;
+  display: inline-flex;
+  background-color: #1a094b;
+  flex-wrap: wrap;
+
+  @include theme.breakpoint('lg') {
+    gap: 20px;
+    padding: 20px;
+  }
+
+  @include theme.breakpoint('md', 'below') {
+    flex-direction: column;
+  }
+  gap: 10px;
+  padding: 10px;
+}
+
+.tile {
+  display: flex;
+  min-width: 160px;
+  background-color: #1d0a53;
+
+  padding: 20px;
+  @include theme.breakpoint('sm', 'below') {
+    height: 125px;
+  }
+  align-items: center;
+  justify-content: left;
+  flex: 1;
+  border: $border;
+  border-radius: 6px;
+  gap: 15px;
+
+  &__icon {
+    position: relative;
+    @include theme.breakpoint('lg') {
+      height: 56px;
+      width: 56px;
+    }
+    height: 45px;
+    width: 45px;
+    fill: theme.color('icons', 'dark');
+  }
+
+  &__info {
+    flex: 4;
+    @include theme.breakpoint('md', 'below') {
+      flex: 9;
+    }
+  }
+
+  &__label {
+    @include theme.breakpoint('lg') {
+      @include theme.text('h6');
+    }
+    @include theme.text('xs');
+    text-transform: capitalize;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 4px;
+  }
+
+  &__value {
+    @include theme.text('s', 'black');
+  }
+}
+
+.projectContentWrap {
+  border-top: $border;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  @include theme.breakpoint('md', 'below') {
+    flex-direction: column-reverse;
+    // border-top: $border;
+  }
+}
+
+.projectTextWrap {
+  flex: 1 1 auto;
+  padding: 20px;
+  background: $block-background;
+  @include theme.breakpoint('md', 'below') {
+    border-top: $border;
+  }
+}
+
+.projectChartsWrap {
+  flex: 1 1 auto;
+  min-width: 50%;
+  border-left: $border;
+  padding: 20px;
+  background: $block-background;
+  @include theme.breakpoint('md', 'below') {
+    border-left: none;
+  }
+}
+
+.chartImage {
+  height: auto;
+  width: 100%;
+  border-radius: 6px;
+
+  @include theme.breakpoint('md', 'below') {
+    max-width: 100%;
+  }
+}
+
+.searchWrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .search {
+    margin-right: 8px;
+    height: 35px;
+    border: 1px solid theme.color('lightTheme', 'input', 'border');
+
+    &:hover,
+    &:focus {
+      border-color: theme.color('lightTheme', 'input', 'hoverBorder');
+    }
+
+    input {
+      height: 100%;
+      color: theme.color('lightTheme', 'input', 'color');
+      outline: theme.color('lightTheme', 'input', 'outline');
+
+      &::placeholder {
+        color: theme.color('lightTheme', 'input', 'placeholder') !important;
+      }
+
+      & + div span {
+        color: theme.color('lightTheme', 'input', 'icon');
+      }
+    }
+  }
+
+  .filterButton {
+    white-space: pre;
+    margin-left: auto;
+  }
+}
+
+.statusButtonWrap {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.projectTypeFilterWrap {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  gap: 1rem;
+}
+
+.loadingWrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

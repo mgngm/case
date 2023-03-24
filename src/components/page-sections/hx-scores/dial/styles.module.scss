@@ -1,0 +1,114 @@
+@use 'styles/theme';
+
+.dialWrapper {
+  @include theme.breakpoint('md') {
+    --width: 436px;
+    --innerFactor: 100px;
+  }
+  --width: 255px;
+  --innerFactor: 70px;
+
+  $paddingOffset: 10px;
+  $innerheight: calc((var(--width) - var(--innerFactor)) / 2);
+  $height: calc(var(--width) / 2 - 6px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .dialGraphicWrapper {
+    position: relative;
+    width: var(--width);
+    height: $height;
+    padding-right: $paddingOffset;
+
+    .innerCurve {
+      position: absolute;
+      bottom: 0;
+      transform: translate(calc((var(--innerFactor) - #{$paddingOffset}) / 2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: calc(var(--width) - var(--innerFactor));
+      height: $innerheight;
+      border-top-left-radius: $innerheight;
+      border-top-right-radius: $innerheight;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0) -0.32%, rgba(255, 255, 255, 0.15) 99.03%);
+
+      .HXScore {
+        @include theme.breakpoint('md') {
+          @include theme.text('2xl', 'bold');
+          padding-top: 25px;
+        }
+        @include theme.text('xl', 'bold');
+        padding-top: 15px;
+        display: block;
+      }
+    }
+  }
+
+  .labels {
+    @include theme.breakpoint('md') {
+      @include theme.text('sm');
+    }
+    @include theme.text('h2');
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 10px;
+  }
+
+  .HXScoreTitle {
+    @include theme.breakpoint('md') {
+      @include theme.text('sm', 'black');
+      margin-top: -8px;
+    }
+    @include theme.text('h6', 'black');
+    margin-top: -26px;
+  }
+
+  //Employee Page overrides,
+  &.employeesPage {
+    @include theme.breakpoint('xl', 'below') {
+      --width: 436px;
+      --innerFactor: 100px;
+    }
+
+    --width: 300px;
+    --innerFactor: 70px;
+
+    .dialGraphicWrapper {
+      .innerCurve {
+        .HXScore {
+          @include theme.text('lg', 'bold');
+          padding-top: 15px;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.titleWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+
+  .dialDelta {
+    font-size: 1.2rem;
+
+    & > div {
+      border-left-width: 8px !important;
+      border-right-width: 8px !important;
+      border-bottom-width: 8px !important;
+      border-top-width: 8px !important;
+    }
+  }
+}

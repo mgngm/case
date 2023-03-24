@@ -1,0 +1,105 @@
+@use 'styles/theme';
+
+.employeesSearchWrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .search {
+    margin-right: 8px;
+    height: 35px;
+    border: 1px solid theme.color('lightTheme', 'input', 'border');
+
+    &:hover,
+    &:focus {
+      border-color: theme.color('lightTheme', 'input', 'hoverBorder');
+    }
+
+    input {
+      height: 100%;
+      color: theme.color('lightTheme', 'input', 'color');
+      outline: theme.color('lightTheme', 'input', 'outline');
+
+      &::placeholder {
+        color: theme.color('lightTheme', 'input', 'placeholder') !important;
+      }
+
+      & + div span {
+        color: theme.color('lightTheme', 'input', 'icon');
+      }
+    }
+  }
+
+  .filterButton {
+    white-space: pre;
+    margin-left: 8px;
+  }
+
+  .exportButton {
+    white-space: pre;
+    margin-left: auto;
+  }
+}
+
+// i still have no understanding why the spinner breaks without these #justCSSthings
+.loadingSpinner {
+  text-align: left;
+  display: inline-flex;
+}
+
+.chipContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 40vw;
+}
+
+.employeesList {
+  margin-bottom: 1rem;
+}
+
+.tableContainer {
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid #d8d8d8 !important;
+}
+
+.checkboxColumn {
+  padding: 5px !important;
+}
+
+.nameColumn {
+  border-right: 1px solid theme.color(border, table);
+  min-width: 200px;
+}
+
+th.nameColumn {
+  border-right-color: rgba(theme.color(border, table), 0.3);
+}
+
+.hxScoreColumn {
+  min-width: 125px;
+}
+
+.hxBandingColumn {
+  min-width: 120px;
+}
+
+.skeleton:global(.MuiSkeleton-root) {
+  background-color: rgba(theme.color(background, admin-list), 0.11);
+  user-select: none;
+}
+
+.employeesPagination {
+  background: theme.color('lightTheme', 'background', 'main');
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 70px;
+  right: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1rem;
+  border-top: 2px solid theme.color('lightTheme', 'input', 'border');
+}

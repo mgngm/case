@@ -1,0 +1,48 @@
+@use 'styles/theme';
+
+.deleteInsightError {
+  color: theme.color('text', 'error');
+}
+
+.loader {
+  display: flex;
+  text-align: start;
+}
+
+.interactive {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  .label {
+    @include theme.text('h6', 'semibold');
+  }
+}
+
+.loaderContainer {
+  display: inline-flex;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  width: 24px;
+}
+
+.inputWrapper {
+  margin-top: 1rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.inputLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  @include theme.text('s');
+}

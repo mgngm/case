@@ -1,0 +1,62 @@
+@use 'styles/theme';
+
+.employeeInfo {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 40px;
+
+  @include theme.text('h5');
+
+  @include theme.breakpoint('md', 'below') {
+    @include theme.text('h6');
+    border: 1px solid theme.color('border', 'dark');
+    border-radius: 8px;
+    column-gap: 0;
+
+    .employeeDatum {
+      flex: 1 0 34%;
+      border-top: 1px solid theme.color('border', 'dark');
+      border-left: 1px solid theme.color('border', 'dark');
+
+      &:nth-child(-n + 2) {
+        border-top: none;
+      }
+
+      &:nth-child(odd) {
+        border-left: none;
+      }
+    }
+  }
+
+  .employeeDatum {
+    display: flex;
+    flex-grow: 1;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    .icon {
+      fill: theme.color('icons', 'dark');
+      height: 23px;
+      width: 23px;
+    }
+
+    .datumTitle {
+      @include theme.breakpoint('md', 'below') {
+        display: none;
+      }
+      display: block;
+      opacity: 0.6;
+    }
+
+    .datumValue {
+      font-weight: theme.typography('font-weight', 'black');
+    }
+
+    .datumDelta {
+      font-size: 0.7rem;
+    }
+  }
+}

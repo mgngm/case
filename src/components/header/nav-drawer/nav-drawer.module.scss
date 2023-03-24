@@ -1,0 +1,148 @@
+@use 'styles/theme';
+
+$gradiant: linear-gradient(
+  278.74deg,
+  theme.color('gradients', 'button', 'dark') 6.82%,
+  theme.color('gradients', 'button', 'light') 96%
+);
+
+.subNavItems {
+  .navItem {
+    padding-left: 54px;
+  }
+}
+
+.navItem {
+  border-bottom: 1px solid theme.color('divider', 'navLink');
+  padding: 15px;
+
+  &.subSelected {
+    .label {
+      & > span {
+        font-weight: theme.typography('font-weight', 'bold');
+      }
+    }
+  }
+
+  &:global(.Mui-selected) {
+    background: $gradiant;
+    color: white;
+
+    .icon {
+      fill: white;
+    }
+
+    .label {
+      & > span {
+        font-weight: theme.typography('font-weight', 'bold');
+      }
+    }
+
+    &:global(.MuiListItemButton-root) {
+      &:hover {
+        background: $gradiant;
+      }
+    }
+  }
+
+  &:global(.MuiListItemButton-root) {
+    &:hover {
+      background: linear-gradient(278.74deg, rgba(1, 163, 198, 0.1) 6.82%, rgba(1, 195, 184, 0.1) 96%), #ffffff;
+    }
+
+    & > :global(.MuiListItemIcon-root) {
+      min-width: 0;
+      margin-right: 15px;
+    }
+  }
+
+  .icon {
+    fill: theme.color('gradients', 'button', 'light');
+    width: 24px;
+    height: 24px;
+  }
+
+  .label {
+    color: theme.color('text', 'navLink');
+    & > span {
+      @include theme.text('h6');
+    }
+  }
+}
+
+.navDraw {
+  & ul {
+    width: 325px;
+    padding: 0;
+  }
+
+  & :global(.MuiDrawer-paper) {
+    overflow-y: unset;
+  }
+
+  .closeNavButton {
+    position: absolute;
+    left: -46px;
+    top: 12px;
+    z-index: 1400;
+
+    & > svg {
+      fill: white;
+    }
+    width: 34px;
+    height: 34px;
+  }
+}
+
+.disabledMenuItem {
+  //MUI Disabled opacity is like 0.3 which is nuts
+  opacity: 0.8 !important;
+}
+
+.profileModal {
+  min-width: 450px;
+}
+
+.profileHeader {
+  background: theme.color(background, teal);
+  margin: 0 !important;
+  padding: 1rem !important;
+  display: flex;
+  align-items: center;
+
+  color: theme.color(text, body);
+
+  .profileCloseBtn {
+    margin-left: auto;
+  }
+}
+
+.profileActions {
+  border-top: 1px solid theme.color(border, input-divider);
+}
+
+.profileResetButton {
+  margin-right: auto;
+}
+
+.modalBold {
+  @include theme.text('h6', 'bold');
+}
+
+.link {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.hiddenList {
+  list-style: none;
+}
+
+.loader {
+  display: flex;
+  width: 80px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,81 @@
+@use 'styles/theme';
+
+.digitalWorkplace {
+  position: relative;
+  min-height: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .sankeyInnerColumn {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 540px;
+
+    &Last {
+      @extend .sankeyInnerColumn;
+      height: 640px;
+    }
+  }
+}
+
+.hybridWorkingInfo {
+  color: rgba(255, 255, 255, 0.5);
+  width: 200px;
+  text-align: center;
+}
+
+.table {
+  border: 1px solid theme.color('divider', 'body');
+  border-radius: 6px;
+  overflow: hidden;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+
+  &__row {
+    display: flex;
+    & > * {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      padding: 10px;
+      border-right: 1px solid theme.color('divider', 'body');
+      border-top: 1px solid theme.color('divider', 'body');
+      margin-right: -1px;
+      margin-top: -1px;
+    }
+
+    &__title {
+      flex: 4;
+      @include theme.text('h6');
+      font-size: 14px;
+    }
+
+    &__value {
+      flex: 2;
+      @include theme.text('h6', 'bold');
+      font-size: 14px;
+      max-width: 80px;
+      justify-content: flex-end;
+    }
+
+    &__percentage {
+      flex: 1;
+      justify-content: center;
+      @include theme.text('h6', 'light');
+      font-weight: 200;
+      font-size: 14px;
+      max-width: 50px;
+    }
+
+    &__heading {
+      flex: 2;
+      @include theme.text('h6', 'light');
+      font-weight: 200;
+      font-size: 14px;
+      border-right: none;
+    }
+  }
+}

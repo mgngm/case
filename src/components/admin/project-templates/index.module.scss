@@ -1,0 +1,57 @@
+@use 'styles/theme';
+
+.reportEmptyState {
+  display: flex;
+  width: 100%;
+  min-height: 60vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 400px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 550px;
+  width: 100%;
+}
+
+.preTable {
+  display: flex;
+  align-items: center;
+
+  .refreshButton {
+    color: white;
+    margin-left: 8px;
+    margin-right: auto;
+    .loadingContainer {
+      text-align: left;
+      height: 24px;
+      width: 24px;
+      display: inline-flex;
+    }
+  }
+
+  .createButton {
+    margin-left: 8px;
+  }
+}
+
+.inputWrapper {
+  margin-top: 1rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.inputLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  @include theme.text('s');
+}

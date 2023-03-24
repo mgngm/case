@@ -1,0 +1,67 @@
+@use 'styles/theme';
+
+.infoCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 6px;
+  text-align: left;
+  width: 220px;
+  height: 100px;
+  color: theme.color(text, card);
+  box-shadow: 0px 10px 60px theme.color(shadow, card);
+  padding: 20px;
+  margin: 15px 0;
+  background: theme.color(background, card);
+
+  .title {
+    @include theme.text('h6', 'light');
+  }
+
+  .text {
+    @include theme.text('h1', 'bold');
+    margin: 5px 0 0 0;
+  }
+
+  .donut {
+    position: absolute;
+    right: -30px;
+    margin: 5px 0 0 0;
+  }
+
+  .icon {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    cursor: pointer;
+
+    & > svg {
+      width: 20px;
+      height: 20px;
+      fill: rgba(0, 0, 0, 0.3);
+    }
+
+    &:hover {
+      & > svg {
+        fill: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .info {
+    .infoIcon {
+      display: none;
+    }
+
+    &:hover {
+      .infoIcon {
+        display: inline;
+      }
+
+      .infoOutlineIcon {
+        display: none;
+      }
+    }
+  }
+}

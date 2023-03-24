@@ -1,0 +1,27 @@
+@use 'styles/theme';
+
+.keyMetricsWrapper {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid theme.color('divider', 'body');
+  border-radius: 12px;
+}
+
+.metricsCollection {
+  width: 100%;
+  display: flex;
+  box-shadow: 0px 0px 60px theme.color('shadow', 'metricsCollection');
+  flex-flow: row wrap;
+  overflow: hidden;
+
+  & > * {
+    flex: 1 1 160px;
+    border-top: 1px solid theme.color('divider', 'body');
+    margin-top: -1px;
+    margin-right: -1px;
+  }
+
+  & > :not(:last-child) {
+    border-right: 1px solid theme.color('divider', 'body');
+  }
+}

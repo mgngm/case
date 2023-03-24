@@ -1,0 +1,47 @@
+@use 'styles/theme';
+
+.drawer {
+  .paper {
+    width: 840px;
+    max-width: 100%;
+    background: linear-gradient(360deg, #53387e 0%, #1a094b 100%);
+    color: white;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    background-color: #53387e;
+    color: white;
+    padding: 22px 30px;
+    .heading {
+      @include theme.text('body', 'bold');
+      margin: 0;
+    }
+    .closeButton {
+      color: white;
+      margin: -8px;
+      margin-left: auto;
+    }
+  }
+}
+
+.tabs {
+  background-color: #53387e;
+  padding: 0 30px;
+  .flexContainer {
+    gap: 10px;
+  }
+  .indicator {
+    display: none;
+  }
+  .tab {
+    color: white;
+    transition: background-color 200ms ease;
+    background-color: #8167ab;
+    border-radius: 6px 6px 0 0;
+    &:global(.Mui-selected) {
+      color: white;
+      background-color: #1a094b;
+    }
+  }
+}

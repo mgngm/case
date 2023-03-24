@@ -1,0 +1,23 @@
+.selectReportAfterPublish {
+  display: flex;
+  align-items: center;
+  flex: 1;
+
+  span {
+    margin: 0 1rem;
+  }
+
+  .selectReportAfterPublishCheckbox {
+    box-shadow: none;
+    background-color: none;
+    border: none;
+  }
+}
+.accessLevelWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  span {
+    width: 40%;
+  }
+}

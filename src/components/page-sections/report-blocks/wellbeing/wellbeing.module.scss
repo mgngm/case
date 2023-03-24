@@ -1,0 +1,98 @@
+@use 'styles/theme';
+
+$border: 1px solid theme.color('border', 'dark');
+$bg: #1d0a53;
+$bg2: #1a094b;
+
+.radial__title {
+  text-align: center;
+  @include theme.breakpoint('md') {
+    @include theme.text('h1', 'black');
+  }
+  @include theme.text('h3', 'black');
+}
+
+.info {
+  @include theme.breakpoint('md') {
+    padding: 40px;
+  }
+  padding: 10px;
+  display: flex;
+  background-color: $bg;
+  flex-wrap: wrap;
+  @include theme.breakpoint('md') {
+    gap: 30px;
+  }
+
+  gap: 15px;
+
+  &__text {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    @include theme.breakpoint('md') {
+      gap: 30px;
+    }
+    gap: 15px;
+    max-width: 740px;
+    min-width: 320px;
+
+    p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.6);
+      @include theme.breakpoint('md') {
+        @include theme.text('h4', $line-height: 'relaxed');
+      }
+      @include theme.text('h6', $line-height: 'relaxed');
+
+      &:first-of-type {
+        @include theme.breakpoint('md') {
+          @include theme.text('h1', 'light');
+        }
+        @include theme.text('h5', 'light');
+        color: white;
+      }
+    }
+  }
+
+  &__tableInfo {
+    flex: 1;
+    background-color: $bg2;
+    border: $border;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+
+    flex-grow: 1;
+    @include theme.breakpoint('md') {
+      padding: 40px;
+      gap: 20px;
+    }
+    gap: 10px;
+    padding: 15px;
+
+    &__heading {
+      @include theme.breakpoint('md') {
+        @include theme.text('h1', 'black');
+      }
+      @include theme.text('h4', 'black');
+    }
+
+    &__label {
+      display: flex;
+      @include theme.breakpoint('md') {
+        @include theme.text('h6');
+      }
+      @include theme.text('h6');
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 6px;
+    }
+
+    &__value {
+      @include theme.breakpoint('md') {
+        @include theme.text('h1', 'black');
+      }
+      @include theme.text('h6', 'black');
+    }
+  }
+}

@@ -1,0 +1,78 @@
+@use 'styles/theme';
+@use 'styles/util';
+
+.menuAnchor {
+  position: relative;
+}
+
+$position-map: (
+  'topRight': (
+    top: 0,
+    right: 0,
+    transform-origin: top right,
+  ),
+  'topLeft': (
+    top: 0,
+    left: 0,
+    transform-origin: top left,
+  ),
+  'bottomRight': (
+    top: 100%,
+    right: 0,
+    transform-origin: top right,
+  ),
+  'bottomLeft': (
+    top: 100%,
+    left: 0,
+    transform-origin: top left,
+  ),
+);
+
+$enter-time: 150ms;
+$exit-time: 100ms;
+
+.menu {
+  position: absolute;
+  background-color: white;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid theme.color('border', 'light-grey');
+  box-shadow: 0px 0px 10px rgba(black, 0.1);
+  z-index: 10;
+  opacity: 0;
+  transition: transform $exit-time, opacity $exit-time * 0.5;
+  transform: scale(80%, 70%);
+  &.open {
+    animation: expand $enter-time, appear $enter-time * 0.5;
+    transition: transform $enter-time, opacity $enter-time * 0.5 ease $exit-time * 0.5;
+    opacity: 1;
+    transform: scale(100%);
+  }
+  @each $position, $map in $position-map {
+    &.#{$position} {
+      @include util.mapToProps($map);
+    }
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes expand {
+  from {
+    transform: scale(80%, 70%);
+  }
+  to {
+    transform: scale(100%);
+  }
+}
+
+:export {
+  exitTime: $exit-time;
+}

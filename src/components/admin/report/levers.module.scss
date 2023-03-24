@@ -1,0 +1,60 @@
+@use 'styles/theme';
+
+.leversWrapper {
+  display: flex;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.leversInputWrapper {
+  position: relative;
+  flex: 1 1 45%;
+  min-width: 0;
+  padding: 0 1rem;
+
+  .preInput {
+    display: flex;
+    align-items: flex-end;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.leversInput {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  .leversInputInput {
+    flex: 1 1;
+  }
+}
+
+.helpIcon {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+
+  &.helpIconBlack {
+    svg {
+      fill: #000;
+    }
+
+    &:hover svg {
+      fill: lighten(#000, 15);
+    }
+  }
+
+  &.helpIconWhite {
+    svg {
+      fill: #fff;
+    }
+
+    &:hover svg {
+      fill: darken(#fff, 15);
+    }
+  }
+}

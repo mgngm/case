@@ -1,0 +1,35 @@
+@use 'styles/theme';
+
+$border: 1px solid theme.color('border', 'dark');
+
+.avgDays {
+  border-bottom: $border;
+  display: flex;
+  gap: 37px;
+  justify-content: center;
+  align-items: center;
+
+  .calendarIcon {
+    @include theme.breakpoint('lg') {
+      width: 96px;
+    }
+    width: 68px;
+  }
+
+  .label {
+    @include theme.breakpoint('lg') {
+      @include theme.text('h4');
+    }
+    @include theme.text('h5');
+    text-transform: capitalize;
+    color: rgba(255, 255, 255, 1);
+    margin-bottom: 4px;
+  }
+
+  .value {
+    @include theme.breakpoint('xl') {
+      @include theme.text('md', 'black');
+    }
+    @include theme.text('h2', 'black');
+  }
+}

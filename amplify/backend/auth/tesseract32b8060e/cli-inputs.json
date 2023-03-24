@@ -1,0 +1,59 @@
+{
+  "version": "1",
+  "cognitoConfig": {
+    "identityPoolName": "tesseract32b8060e_identitypool_32b8060e",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "tesser32b8060e",
+    "userPoolName": "tesseract32b8060e_userpool_32b8060e",
+    "autoVerifiedAttributes": ["email"],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": ["SMS Text Message"],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": ["email"],
+    "aliasAttributes": [],
+    "userpoolClientGenerateSecret": false,
+    "userpoolClientRefreshTokenValidity": "7",
+    "userpoolClientWriteAttributes": ["email"],
+    "userpoolClientReadAttributes": ["email"],
+    "userpoolClientLambdaRole": "tesser32b8060e_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "sharedId": "32b8060e",
+    "resourceName": "tesseract32b8060e",
+    "authSelections": "identityPoolAndUserPool",
+    "useDefault": "manual",
+    "usernameAttributes": ["email"],
+    "triggers": {},
+    "userPoolGroupList": [],
+    "serviceName": "Cognito",
+    "usernameCaseSensitive": false,
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": ["AuthRole", "Arn"]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": ["UnauthRole", "Arn"]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [],
+    "thirdPartyAuth": true,
+    "authProviders": [],
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "hostedUI": true,
+    "hostedUIDomainName": "tesseract74mo7u6u13ostdr72dhmoc6dv6",
+    "authProvidersUserPool": [],
+    "hostedUIProviderMeta": "[]",
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "hostedUIProviderCreds": "[]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/login/\",\"https://develop.d1m9105kyx4cvx.amplifyapp.com/login/\",\"https://portal.dev.actual-experience.com/login/\",\"https://www.portal.dev.actual-experience.com/login/\"],\"LogoutURLs\":[\"http://localhost:3000/logout/\",\"https://develop.d1m9105kyx4cvx.amplifyapp.com/logout/\",\"https://portal.dev.actual-experience.com/logout/\",\"https://portal.dev.actual-experience.com/logout/\"]}"
+  }
+}

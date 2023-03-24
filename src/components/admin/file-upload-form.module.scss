@@ -1,0 +1,51 @@
+@use 'styles/theme';
+
+.fileInput {
+  margin: 1rem 0;
+}
+
+.fileSubmitButton {
+  background: theme.color(button, teal) !important;
+  color: theme.color(text, body) !important;
+
+  &[disabled] {
+    background: theme.color(button, loading) !important;
+    color: theme.color(text, body) !important;
+  }
+}
+
+.success {
+  padding: 1rem;
+  background: theme.color(button, teal);
+  border-radius: 6px;
+  color: white;
+
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 1rem;
+  }
+}
+
+.error {
+  background-color: theme.color(background, error);
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: bold;
+
+  svg {
+    margin-right: 1rem;
+  }
+
+  & > div {
+    display: block;
+    width: 100%;
+    margin: 1rem;
+    font-family: monospace;
+    font-size: 1rem;
+    font-weight: normal;
+  }
+}
